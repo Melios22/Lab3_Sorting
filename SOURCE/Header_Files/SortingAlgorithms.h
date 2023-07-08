@@ -10,5 +10,5 @@ void heapSort(vector<int> &arr, int &comparisons); // Code in recursion and norm
 void mergeSort(vector<int> &arr, int left, int right, int &comparisons);
 void quickSort(vector<int> &arr, int left, int right, int &comparisons);
 void countingSort(vector<int> &arr, int &comparisons);
-void radixSort(vector<int> &arr, int &comparisons);
+void radixSort(vector<int> &arr,int base, int &comparisons);
 // void flashSort(vector<int> &arr, int &comparisons);

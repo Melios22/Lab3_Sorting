@@ -1,130 +1,134 @@
 #include "../Header_Files/All.h"
 
 //? Heap Sort (enhancing from selection sort) - building a heap structure and gradually swap the root with the last element
-void heapify(int *arr, int n, int pos)
+void heapify(vector<int> &arr, int size, int pos, int & comparations)
 {
     int v = arr[pos];
     bool isHeap = false;
-    while (!isHeap && 2 * pos + 1 < n)
+    while (++comparations && (!isHeap && 2 * pos + 1 < size))
     {
         int j = 2 * pos + 1;
-        if (j < n - 1 && arr[j] < arr[j + 1]) // Get the bigger child node
+        if (++comparations && j < n - 1 && arr[j] < arr[j + 1]) // Get the bigger child node
             j++;
-        if (arr[pos] >= arr[j]) // Already satisfied a heap at that element to the rest on the right
+        if (++comparations && arr[pos] >= arr[j]) // Already satisfied a heap at that element to the rest on the right
             isHeap = true;
         else
         {
             std::swap(arr[pos], arr[j]); // Reposition the node
             pos = j;                     // Loop to check validity of the node just has swapped
+            ++comparations;
         }
     }
     arr[pos] = v;
 }
-void heapifyRecursion(int *arr, int n, int pos)
+void heapifyRecursion(vector<int> &arr, int size, int pos, int &comparations)
 {
     int largest = pos;
     int left = 2 * pos + 1;
     int right = left + 1;
 
-    if (left < n && arr[left] > arr[largest]) // compare the child node to find if the child is bigger
+    if (++comparations && (left < size && arr[left] > arr[largest])) // compare the child node to find if the child is bigger
         largest = left;
-    if (right < n && arr[right] > arr[largest])
+    if (++comparations && (right < size && arr[right] > arr[largest]))
         largest = right;
 
-    if (largest != pos) // If the position differ from the declaration, it means the child in bigger than its parent
+    if (++comparations && largest != pos) // If the position differ from the declaration, it means the child in bigger than its parent
     {
         std::swap(arr[pos], arr[largest]); // Swap to its parent
-        heapifyRecursion(arr, n, largest); // Check validity of the new child
+        heapifyRecursion(arr, size, largest, comparations); // Check validity of the new child
     }
     return;
 }
-void heapSort(int *arr, int n)
+void heapSort(vector<int> &arr, int size, int &comparations)
 {
-    for (int i = n / 2 - 1; i >= 0; i--) // Loop from the middle to heapify the whole array
-        heapify(arr, n, i);
+    for (int i = n / 2 - 1;++comparations && i >= 0; i--) // Loop from the middle to heapify the whole array
+        heapify(arr, n, i, comparations);
     // heapifyRecursion(arr, n, i);
-    for (int i = n - 1; i > 0; i--)
+    for (int i = n - 1; ++comparations && i > 0; i--)
     {
         std::swap(arr[0], arr[i]); // Swap the first element with the last unsorted element
-        heapify(arr, i, 0);        // Heapify the semi-heap again with the reduced size
+        heapify(arr, i, 0, comparations);        // Heapify the semi-heap again with the reduced size
         // heapifyRecursion(arr, i, 0);
     }
 }
 
 //? Merge Sort - divide the array into small part and combine accordingly
-void merge(int *arr, int left, int mid, int right)
+void merge(vector<int> &arr, int left, int mid, int right, int &comparations)
 {
     int *tmp_arr = new int[right - left + 1]; // Create a temporary array
     int i = left, j = mid + 1, k = 0;
 
-    while (i <= mid && j <= right)
+    while (++comparations && (i <= mid && j <= right))
     {
-        if (arr[i] < arr[j]) // Comparing element ant index i, j of the 2 small array, put it accordingly into the tmp list
+        if (++comparations && (arr[i] < arr[j]))// Comparing element ant index i, j of the 2 small array, put it accordingly into the tmp list
             tmp_arr[k++] = arr[i++];
         else
+        {
             tmp_arr[k++] = arr[j++];
+            ++comparations;
+        }
     }
-    while (i <= mid) // Put the rest of the 2 list into the tmp
+    while (++comparations && i <= mid) // Put the rest of the 2 list into the tmp
         tmp_arr[k++] = arr[i++];
-    while (j <= right)
+    while (++comparations && j <= right)
         tmp_arr[k++] = arr[j++];
-    for (int i = left, k = 0; i <= right; i++, k++) // Copy back element to the original array
+    for (int i = left, k = 0; ++comparations && i <= right; i++, k++) // Copy back element to the original array
         arr[i] = tmp_arr[k];
     delete[] tmp_arr;
 }
-void mergeSort(int *arr, int left, int right)
+void mergeSort(vector<int> &arr, int left, int right, int comparations)
 {
-    if (left < right)
+    if (++comparations && (left < right))
     {
         int mid = left + (right - left) / 2; // get the mid, avoiding overflowing
-        mergeSort(arr, left, mid);           // Recursively divide into small lists
-        mergeSort(arr, mid + 1, right);
-        merge(arr, left, mid, right); // Merge the sorted lists together
+        mergeSort(arr, left, mid, comparations);           // Recursively divide into small lists
+        mergeSort(arr, mid + 1, right, comparations);
+        merge(arr, left, mid, right, comparations); // Merge the sorted lists together
     }
 }
 
 //? Radix Sort
-void radixSort(int *arr, int n, int base)
+void radixSort(vector<int> &arr, int base, int &comparations)
 {
     std::queue<int> *bucket = new std::queue<int>[base];
     int longest = 0;
     int minVal = arr[0];
     bool negative = false;
 
-    for (int i = 0; i < n; i++)
-        if (arr[i] < 0)
+    for (int i = 0; ++comparations && i < n; i++)
+        if (++comparations && arr[i] < 0)
         {
             negative = true;                   // Check for negative numbers
             minVal = std::min(minVal, arr[i]); // Get the minimum value of the array
         }
 
-    if (negative)
-        for (int i = 0; i < n; i++)
+    if (++comparations && negative)
+        for (int i = 0; ++comparations && i < n; i++)
             arr[i] -= minVal; // Add every element up to 0
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; ++comparations && i < n; i++)
         longest = std::max(longest, int(std::to_string(arr[i]).size())); // Get the max size of the elements
 
     int expo = 1;
-    while (longest--)
+    while (++comparations && longest--)
     {
-        for (int i = 0; i < n; i++)
+        for (int i = 0; ++comparations && i < n; i++)
         {
             int order = (arr[i] / expo) % 10; // Get the digit from rightmost to leftmost
             bucket[order].push(arr[i]);       // Push into a queue
         }
         expo *= base;
 
-        for (int i = 0, k = 0; i < base; i++)
-            while (!bucket[i].empty()) // Pop the element gradually and copy back to the array
+        for (int i = 0, k = 0; ++comparations && i < base; i++)
+            while (++comparations && !bucket[i].empty()) // Pop the element gradually and copy back to the array
             {
                 arr[k++] = bucket[i].front();
                 bucket[i].pop();
             }
     }
 
-    if (negative) // Decrement back to its original
-        for (int i = 0; i < n; i++)
+    if (++comparations && negative) // Decrement back to its original
+        for (int i = 0; ++comparations && i < n; i++)
             arr[i] += minVal;
 
     delete[] bucket;
