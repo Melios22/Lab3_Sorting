@@ -4,6 +4,8 @@
 #include <string>
 #include <cstring>
 
+#include "DataGenerator.h"
+
 using namespace std;
 
 struct Task
@@ -107,7 +109,6 @@ bool getInfo4(int argc, char *argv[], Task &task)
             {
                 task.command = 3;
                 task.inSize = atoi(argv[3]);
-                task.inOrder = argv[4];
             }
             task.outPara = argv[4];
         }
@@ -140,6 +141,23 @@ bool getInfo4(int argc, char *argv[], Task &task)
     return checkVailidity(task);
 }
 
+void printBreakLine()
+{
+    cout << "-------------------------------------------------\n";
+}
+
+void printInputOrder(Task task)
+{
+    if (task.inOrder == "-rand")
+        cout << "Input order: Randomize" << "\n";
+    else if (task.inOrder == "-nsorted")
+        cout << "Input order: Nearly Sorted" << "\n";
+    else if (task.inOrder == "-sorted")
+        cout << "Input order: Sorted" << "\n";
+    else
+        cout << "Input order: Reversed" << "\n";
+}
+
 void printCmd(Task task)
 {
     switch (task.command)
@@ -148,43 +166,147 @@ void printCmd(Task task)
         cout << "\nALGORITHM MODE\n";
         cout << "Algorithm: " << task.al1 << "\n";
         cout << "Input file: " << task.inFile << "\n";
-        cout << "Output parameter: " << task.outPara.substr(1) << "\n";
-        cout << "-------------------------------------------------\n";
+        cout << "Input size: " << task.inSize << "\n";
+        printBreakLine();
         break;
     case 2:
         cout << "\nALGORITHM MODE\n";
         cout << "Algorithm: " << task.al1 << "\n";
         cout << "Input size: " << task.inSize << "\n";
-        cout << "Input order: " << task.inOrder.substr(1) << "\n";
-        cout << "Output parameter: " << task.outPara.substr(1) << "\n";
-        cout << "-------------------------------------------------\n";
+        printInputOrder(task);
+        printBreakLine();
         break;
     case 3:
         cout << "\nALGORITHM MODE\n";
         cout << "Algorithm: " << task.al1 << "\n";
-        cout << "Input size: " << task.inSize << "\n";
-        cout << "Output parameter: " << task.outPara.substr(1) << "\n";
-        cout << "-------------------------------------------------\n";
+        cout << "Input size: " << task.inSize << "\n\n";
         break;
     case 4:
         cout << "\nCOMPARISON MODE\n";
         cout << "Algorithm: " << task.al1 << " | " << task.al2 << "\n";
         cout << "Input file: " << task.inFile << "\n";
-        cout << "-------------------------------------------------\n";
+        cout << "Input size: " << task.inSize << "\n";
+        printBreakLine();
         break;
     case 5:
         cout << "\nCOMPARISON MODE\n";
         cout << "Algorithm: " << task.al1 << " | " << task.al2 << "\n";
         cout << "Input size: " << task.inSize << "\n";
-        cout << "Input order: " << task.inOrder.substr(1) << "\n";
-        cout << "-------------------------------------------------\n";
+        printInputOrder(task);
+        printBreakLine();
         break;
     }
 }
 
+//Some secondary functions
+void exportArrayToFile (vector<int> arr, string file_output)
+{
+    //Open file to write
+    ofstream ofs;
+    ofs.open(file_output);
+    if (!ofs.is_open())
+    {
+        cout << "Error: Cannot open file!" << "\n";
+        return;
+    }
+
+    //Write array into file
+    int size = arr.size();
+    ofs << size << "\n";
+    for (int i = 0; i < size; ++i)
+        ofs << arr[i] << " ";
+
+    //Close file
+    ofs.close();
+}
+
+//Handle Command 1
+void Command_1 (Task task)
+{
+    //Open file to read
+    ifstream ifs;
+    ifs.open(task.inFile);
+    if (!ifs.is_open())
+    {
+        cout << "Error: Cannot open file!" << "\n";
+        return;
+    }
+
+    //Read size of array
+    int size;
+    ifs >> size;
+
+    //Read array
+    vector<int> arr = vector<int>(size);
+    for (int i = 0; i < size; ++i)
+        ifs >> arr[i];
+
+    //Close file
+    ifs.close();
+
+    //Print some initial information to console screen
+    task.inSize = size;
+    printCmd(task);
+
+    //Measure time - comparisons
+
+    //Print measured data(s) to console screen
+
+    //Export array
+    exportArrayToFile(arr, "output.txt");
+}
+
+//Handle Command 2
+
+
+//Handle Command 3
+void Command_3 (Task task)
+{
+    //Generate four types of array
+    vector<int> arr_1 = vector<int> (task.inSize);
+    GenerateData(&arr_1[0], task.inSize, 0);
+    vector<int> arr_2 = vector<int> (task.inSize);
+    GenerateData(&arr_2[0], task.inSize, 3);
+    vector<int> arr_3 = vector<int> (task.inSize);
+    GenerateData(&arr_3[0], task.inSize, 1);
+    vector<int> arr_4 = vector<int> (task.inSize);
+    GenerateData(&arr_4[0], task.inSize, 2);
+
+    //Export arrays into 4 files
+    exportArrayToFile(arr_1, "input_1.txt");
+    exportArrayToFile(arr_2, "input_2.txt");
+    exportArrayToFile(arr_3, "input_3.txt");
+    exportArrayToFile(arr_4, "input_4.txt");
+
+    //Print some initial information to console screen
+    printCmd(task);
+
+    //Randomed array
+    cout << "Input order: Randomize" << "\n";
+    printBreakLine();
+
+    //Nearly sorted array
+    cout << "Input order: Nearly Sorted" << "\n";
+    printBreakLine();
+
+    //Sorted array
+    cout << "Input order: Sorted" << "\n";
+    printBreakLine();
+
+    //Reverse array
+    cout << "Input order: Reversed" << "\n";
+    printBreakLine();
+
+}
+
+//Handle Command 4
+
+
+//Handle Command 5
+
 int main(int argc, char *argv[])
 {
-    if (argc > 6)
+    if (argc > 6 || argc < 5)
     {
         cout << "Wrong format!.\nPlease using one of these:\n";
         cout << "[File] -a [Algorithm] [input file] [Output para]\n";
