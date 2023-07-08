@@ -1,14 +1,14 @@
 #include "../Header_Files/All.h"
 
 //? Heap Sort (enhancing from selection sort) - building a heap structure and gradually swap the root with the last element
-void heapify(vector<int> &arr, int size, int pos, int & comparations)
+void heapify(vector<int>& arr, int size, int pos, int& comparations)
 {
     int v = arr[pos];
     bool isHeap = false;
     while (++comparations && (!isHeap && 2 * pos + 1 < size))
     {
         int j = 2 * pos + 1;
-        if (++comparations && j < n - 1 && arr[j] < arr[j + 1]) // Get the bigger child node
+        if (++comparations && j < size - 1 && arr[j] < arr[j + 1]) // Get the bigger child node
             j++;
         if (++comparations && arr[pos] >= arr[j]) // Already satisfied a heap at that element to the rest on the right
             isHeap = true;
@@ -21,7 +21,7 @@ void heapify(vector<int> &arr, int size, int pos, int & comparations)
     }
     arr[pos] = v;
 }
-void heapifyRecursion(vector<int> &arr, int size, int pos, int &comparations)
+void heapifyRecursion(vector<int>& arr, int size, int pos, int& comparations)
 {
     int largest = pos;
     int left = 2 * pos + 1;
@@ -39,12 +39,12 @@ void heapifyRecursion(vector<int> &arr, int size, int pos, int &comparations)
     }
     return;
 }
-void heapSort(vector<int> &arr, int size, int &comparations)
+void heapSort(vector<int>& arr, int& comparations)
 {
-    for (int i = n / 2 - 1;++comparations && i >= 0; i--) // Loop from the middle to heapify the whole array
-        heapify(arr, n, i, comparations);
+    for (int i = arr.size() / 2 - 1; ++comparations && i >= 0; i--) // Loop from the middle to heapify the whole array
+        heapify(arr, arr.size(), i, comparations);
     // heapifyRecursion(arr, n, i);
-    for (int i = n - 1; ++comparations && i > 0; i--)
+    for (int i = arr.size() - 1; ++comparations && i > 0; i--)
     {
         std::swap(arr[0], arr[i]); // Swap the first element with the last unsorted element
         heapify(arr, i, 0, comparations);        // Heapify the semi-heap again with the reduced size
@@ -53,9 +53,9 @@ void heapSort(vector<int> &arr, int size, int &comparations)
 }
 
 //? Merge Sort - divide the array into small part and combine accordingly
-void merge(vector<int> &arr, int left, int mid, int right, int &comparations)
+void merge(vector<int>& arr, int left, int mid, int right, int& comparations)
 {
-    int *tmp_arr = new int[right - left + 1]; // Create a temporary array
+    int* tmp_arr = new int[right - left + 1]; // Create a temporary array
     int i = left, j = mid + 1, k = 0;
 
     while (++comparations && (i <= mid && j <= right))
@@ -76,7 +76,7 @@ void merge(vector<int> &arr, int left, int mid, int right, int &comparations)
         arr[i] = tmp_arr[k];
     delete[] tmp_arr;
 }
-void mergeSort(vector<int> &arr, int left, int right, int comparations)
+void mergeSort(vector<int>& arr, int left, int right, int& comparations)
 {
     if (++comparations && (left < right))
     {
@@ -88,14 +88,14 @@ void mergeSort(vector<int> &arr, int left, int right, int comparations)
 }
 
 //? Radix Sort
-void radixSort(vector<int> &arr, int base, int &comparations)
+void radixSort(vector<int>& arr, int base, int& comparations)
 {
-    std::queue<int> *bucket = new std::queue<int>[base];
+    std::queue<int>* bucket = new std::queue<int>[base];
     int longest = 0;
     int minVal = arr[0];
     bool negative = false;
 
-    for (int i = 0; ++comparations && i < n; i++)
+    for (int i = 0; ++comparations && i < arr.size(); i++)
         if (++comparations && arr[i] < 0)
         {
             negative = true;                   // Check for negative numbers
@@ -103,16 +103,16 @@ void radixSort(vector<int> &arr, int base, int &comparations)
         }
 
     if (++comparations && negative)
-        for (int i = 0; ++comparations && i < n; i++)
+        for (int i = 0; ++comparations && i < arr.size(); i++)
             arr[i] -= minVal; // Add every element up to 0
 
-    for (int i = 0; ++comparations && i < n; i++)
+    for (int i = 0; ++comparations && i < arr.size(); i++)
         longest = std::max(longest, int(std::to_string(arr[i]).size())); // Get the max size of the elements
 
     int expo = 1;
     while (++comparations && longest--)
     {
-        for (int i = 0; ++comparations && i < n; i++)
+        for (int i = 0; ++comparations && i < arr.size(); i++)
         {
             int order = (arr[i] / expo) % 10; // Get the digit from rightmost to leftmost
             bucket[order].push(arr[i]);       // Push into a queue
@@ -128,7 +128,7 @@ void radixSort(vector<int> &arr, int base, int &comparations)
     }
 
     if (++comparations && negative) // Decrement back to its original
-        for (int i = 0; ++comparations && i < n; i++)
+        for (int i = 0; ++comparations && i < arr.size(); i++)
             arr[i] += minVal;
 
     delete[] bucket;

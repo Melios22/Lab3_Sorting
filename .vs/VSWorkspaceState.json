@@ -4,8 +4,9 @@
     "\\SOURCE",
     "\\SOURCE\\Cpp_Files",
     "\\SOURCE\\Header_Files",
+    "\\SOURCE\\Sort_Source",
     "\\SplitTasks"
   ],
-  "SelectedNode": "\\SOURCE\\Header_Files\\SortingAlgorithms.h",
+  "SelectedNode": "\\SOURCE\\Sort_Source\\Sorts.cpp",
   "PreviewInSolutionExplorer": false
 }
