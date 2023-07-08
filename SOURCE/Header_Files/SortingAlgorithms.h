@@ -1,11 +1,5 @@
 #pragma once
-
-#include <iostream>
-#include <queue>
-#include <string>
-#include <vector>
-
-using namespace std;
+#include "Library.h"
 
 void selectionSort(vector<int> &arr, int &comparisons);
 void bubbleSort(vector<int> &arr, int &comparisons);

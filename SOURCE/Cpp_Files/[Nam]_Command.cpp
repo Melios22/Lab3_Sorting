@@ -1,5 +1,4 @@
-#include "Command.h"
-#include "DataGenerator.h"
+#include "../Header_Files/All.h"
 
 //Handle Command 1
 void Command_1 (Task task)

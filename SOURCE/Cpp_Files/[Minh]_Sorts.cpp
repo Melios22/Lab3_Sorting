@@ -1,4 +1,5 @@
-#include "SortingAlgorithms.h"
+#include "../Header_Files/All.h"
+
 
 int findMedian(vector<int> &arr, int left, int right, int &comparisons)
 {

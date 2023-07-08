@@ -1,4 +1,5 @@
-#include "Command.h"
+#include "../Header_Files/All.h"
+
 
 bool isNum(char *str)
 {

@@ -1,4 +1,4 @@
-#include "SortingAlgorithms.h"
+#include "../Header_Files/All.h"
 
 //? Heap Sort (enhancing from selection sort) - building a heap structure and gradually swap the root with the last element
 void heapify(int *arr, int n, int pos)

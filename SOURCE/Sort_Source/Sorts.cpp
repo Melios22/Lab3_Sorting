@@ -1,50 +1,49 @@
-#include <iostream>
-#include <queue>
-#include <string>
+#include "../Header_Files/SortingAlgorithms.h"
 
-void selectionSort(int *arr, int n);
-void bubbleSort(int *arr, int n);
-void shakerSort(int *arr, int n);
-void insertionSort(int *arr, int n);
-void shellSort(int *arr, int n);
-void heapSort(int *arr, int n); // Code in recursion and normally
-void mergeSort(int *arr, int left, int right);
-void quickSort(int *arr, int left, int right);
-void countingSort(int *arr, int n);
-void radixSort(int *arr, int n, int base = 10);
-// void flashSort(int *arr, int n);
+void selectionSort(vector<int> &arr, int &comparisons);
+void bubbleSort(vector<int> &arr, int &comparisons);
+void shakerSort(vector<int> &arr, int &comparisons);
+void insertionSort(vector<int> &arr, int &comparisons);
+void shellSort(vector<int> &arr, int &comparisons);
+void heapSort(vector<int> &arr, int &comparisons); // Code in recursion and normally
+void mergeSort(vector<int> &arr, int left, int right, int &comparisons);
+void quickSort(vector<int> &arr, int left, int right, int &comparisons);
+void countingSort(vector<int> &arr, int &comparisons);
+void radixSort(vector<int> &arr, int &comparisons, int base = 10);
+// void flashSort(vector<int> &arr, int &comparisons);
 
-int main()
-{
-    int arr[] = {4689, -7818, 8341, 6801, 6834, 664, 7872, -6579, -1723, 8493, 7237, -5016};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    std::cout << "Unsorted Array:   ";
-    for (int i = 0; i < n; i++)
-        std::cout << arr[i] << " ";
-    std::cout << "\n\n";
+// int main()
+// {
+//     int arr[] = {4689, -7818, 8341, 6801, 6834, 664, 7872, -6579, -1723, 8493, 7237, -5016};
+//     int n = sizeof(arr) / sizeof(arr[0]);
+//     std::cout << "Unsorted Array:   ";
+//     for (int i = 0; i < n; i++)
+//         std::cout << arr[i] << " ";
+//     std::cout << "\n\n";
 
-    // Sorting algorithm
-    // selectionSort(arr, n);
-    // bubbleSort(arr, n);
-    // shakerSort(arr, n);
-    // insertionSort(arr, n);
-    // shellSort(arr, n);
-    // heapSort(arr, n);
-    // mergeSort(arr, 0, n - 1);
-    // quickSort(arr, 0, n - 1);
-    // countingSort(arr, n);
-    // radixSort(arr, n, 10);
+//     // Sorting algorithm
+//     // selectionSort(arr, n);
+//     // bubbleSort(arr, n);
+//     // shakerSort(arr, n);
+//     // insertionSort(arr, n);
+//     // shellSort(arr, n);
+//     // heapSort(arr, n);
+//     // mergeSort(arr, 0, n - 1);
+//     // quickSort(arr, 0, n - 1);
+//     // countingSort(arr, n);
+//     // radixSort(arr, n, 10);
 
-    std::cout << "Sorted Array:     ";
-    for (int i = 0; i < n; i++)
-        std::cout << arr[i] << " ";
-    std::cout << "\n\n";
-    return 0;
-}
+//     std::cout << "Sorted Array:     ";
+//     for (int i = 0; i < n; i++)
+//         std::cout << arr[i] << " ";
+//     std::cout << "\n\n";
+//     return 0;
+// }
 
 //? Selection Sort - swap the min in the unsorted to the last sorted part
-void selectionSort(int *arr, int n)
+void selectionSort(vector<int> &arr, int &comparisons)
 {
+    int n = arr.size();
     for (int i = 0; i < n - 1; i++)
     {
         int minInd = i;
@@ -58,8 +57,9 @@ void selectionSort(int *arr, int n)
 }
 
 //? Bubble Sort - swap the largest element to the last in every loop
-void bubbleSort(int *arr, int n)
+void bubbleSort(vector<int> &arr, int &comparisons)
 {
+    int n = arr.size();
     for (int i = 0; i < n - 1; i++)
     {
         bool swapped = false;
@@ -75,8 +75,9 @@ void bubbleSort(int *arr, int n)
 }
 
 //? Shaker Sort (Cocktail Sort/ Bidirectional Bubble Sort) - similar to bubble sort but doing from both sides
-void shakerSort(int *arr, int n)
+void shakerSort(vector<int> &arr, int &comparisons)
 {
+    int n = arr.size();
     int left = 0, right = n - 1;
     while (left < right)
     {
@@ -103,8 +104,9 @@ void shakerSort(int *arr, int n)
 }
 
 //? Insertion Sort - move the key to its correct pos by shifting the other elements
-void insertionSort(int *arr, int n)
+void insertionSort(vector<int> &arr, int &comparisons)
 {
+    int n = arr.size();
     for (int i = 1; i < n; i++)
     {
         int key = arr[i];
@@ -121,8 +123,9 @@ void insertionSort(int *arr, int n)
 }
 
 //? Shell Sort (extension of insertion sort) - sort elements that are h position apart
-void shellSort(int *arr, int n)
+void shellSort(vector<int> &arr, int &comparisons)
 {
+    int n = arr.size();
     int gap = 1;
     while (gap < n / 3) // generate the gap using Knuth's formula
         gap = gap * 3 + 1;
@@ -146,8 +149,9 @@ void shellSort(int *arr, int n)
 }
 
 //? Heap Sort (enhancing from selection sort) - building a heap structure and gradually swap the root with the last element
-void heapify(int *arr, int n, int pos)
+void heapify(vector<int> &arr, int &comparisons, int pos)
 {
+    int n = arr.size();
     int v = arr[pos];
     bool isHeap = false;
     while (!isHeap && 2 * pos + 1 < n)
@@ -165,8 +169,9 @@ void heapify(int *arr, int n, int pos)
     }
     arr[pos] = v;
 }
-void heapifyRecursion(int *arr, int n, int pos)
+void heapifyRecursion(vector<int> &arr, int &comparisons, int pos)
 {
+    int n = arr.size();
     int largest = pos;
     int left = 2 * pos + 1;
     int right = left + 1;
@@ -183,8 +188,9 @@ void heapifyRecursion(int *arr, int n, int pos)
     }
     return;
 }
-void heapSort(int *arr, int n)
+void heapSort(vector<int> &arr, int &comparisons)
 {
+    int n = arr.size();
     for (int i = n / 2 - 1; i >= 0; i--) // Loop from the middle to heapify the whole array
         heapify(arr, n, i);
     // heapifyRecursion(arr, n, i);
@@ -197,7 +203,7 @@ void heapSort(int *arr, int n)
 }
 
 //? Merge Sort - divide the array into small part and combine accordingly
-void merge(int *arr, int left, int mid, int right)
+void merge(vector<int> &arr, int left, int mid, int right, int &comparisons)
 {
     int *tmp_arr = new int[right - left + 1]; // Create a temporary array
     int i = left, j = mid + 1, k = 0;
@@ -217,14 +223,14 @@ void merge(int *arr, int left, int mid, int right)
         arr[i] = tmp_arr[k];
     delete[] tmp_arr;
 }
-void mergeSort(int *arr, int left, int right)
+void mergeSort(vector<int> &arr, int left, int right, int &comparisons)
 {
     if (left < right)
     {
         int mid = left + (right - left) / 2; // get the mid, avoiding overflowing
-        mergeSort(arr, left, mid);           // Recursively divide into small lists
-        mergeSort(arr, mid + 1, right);
-        merge(arr, left, mid, right); // Merge the sorted lists together
+        mergeSort(arr, left, mid, comparisons);           // Recursively divide into small lists
+        mergeSort(arr, mid + 1, right, comparisons);
+        merge(arr, left, mid, right, comparisons); // Merge the sorted lists together
     }
 }
 
@@ -251,8 +257,9 @@ void quickSort(int *arr, int left, int right)
 }
 
 //? Counting Sort - create another array to count the occurences of element in the array
-void countingSort(int *arr, int n)
+void countingSort(vector<int> &arr, int &comparisons)
 {
+    int n = arr.size();
     int minVal = arr[0];
     int maxVal = arr[0];
 
@@ -287,8 +294,9 @@ void countingSort(int *arr, int n)
 }
 
 //? Radix Sort
-void radixSort(int *arr, int n, int base)
+void radixSort(vector<int> &arr, int &comparisons, int base)
 {
+    int n = arr.size();
     std::queue<int> *bucket = new std::queue<int>[base];
     int longest = 0;
     int minVal = arr[0];

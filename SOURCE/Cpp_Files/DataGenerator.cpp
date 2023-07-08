@@ -1,4 +1,5 @@
-﻿#include "DataGenerator.h"
+﻿#include "../Header_Files/All.h"
+
 
 template <class T>
 void HoanVi(T &a, T &b)

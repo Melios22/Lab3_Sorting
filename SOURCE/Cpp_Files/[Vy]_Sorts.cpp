@@ -1,4 +1,5 @@
-#include "SortingAlgorithms.h"
+#include "../Header_Files/All.h"
+
 
 //? Selection Sort - swap the min in the unsorted to the last sorted part
 void selectionSort(vector<int> &arr, int &comparisons)
