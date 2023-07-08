@@ -1,3 +1,4 @@
+//! comparisons
 #include "SortingAlgorithms.h"
 
 //? Shaker Sort (Cocktail Sort/ Bidirectional Bubble Sort) - similar to bubble sort but doing from both sides

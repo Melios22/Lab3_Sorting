@@ -1,20 +1,20 @@
-#ifndef SortingAlgorithms.h
-#define SortingAlgorithms.h
+#pragma once
 
 #include <iostream>
 #include <queue>
 #include <string>
+#include <vector>
 
-void selectionSort(int *arr, int n);
-void bubbleSort(int *arr, int n);
-void shakerSort(int *arr, int n);
-void insertionSort(int *arr, int n);
-void shellSort(int *arr, int n);
-void heapSort(int *arr, int n); // Code in recursion and normally
-void mergeSort(int *arr, int left, int right);
-void quickSort(int *arr, int left, int right);
-void countingSort(int *arr, int n);
-void radixSort(int *arr, int n, int base = 10);
-// void flashSort(int *arr, int n);
+using namespace std;
 
-#endif
+void selectionSort(vector<int> &arr, int &comparisons);
+void bubbleSort(vector<int> &arr, int &comparisons);
+void shakerSort(vector<int> &arr, int &comparisons);
+void insertionSort(vector<int> &arr, int &comparisons);
+void shellSort(vector<int> &arr, int &comparisons);
+void heapSort(vector<int> &arr, int &comparisons); // Code in recursion and normally
+void mergeSort(vector<int> &arr, int left, int right, int &comparisons);
+void quickSort(vector<int> &arr, int left, int right, int &comparisons);
+void countingSort(vector<int> &arr, int &comparisons);
+void radixSort(vector<int> &arr, int &comparisons);
+// void flashSort(vector<int> &arr, int &comparisons);
