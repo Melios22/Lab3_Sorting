@@ -27,4 +27,6 @@ Comparisons
     - "-both": both
 
 ## Noted:
+**comparations
+**runtime
 **Cmd3 print all 4 case of input order**
