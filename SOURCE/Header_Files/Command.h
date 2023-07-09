@@ -1,7 +1,6 @@
 #pragma once
 #include "Library.h"
 
-
 //! Algorithm
 // todo Cmd1: [File] -a [Algorithm] [input file] [Output para]
 // todo Cmd2: [File] -a [Algorithm] [input size] [input order] [Output para]
@@ -30,10 +29,10 @@ bool getInfo4(int argc, char *argv[], Task &task);
 void printBreakLine();
 void printInputOrder(Task task);
 void printCmd(Task task);
-void exportArrayToFile (vector<int> arr, string file_output);
+void exportArrayToFile(vector<int> arr, string file_output);
 
-void Command_1 (Task task);
-//Add Prototype Command 2 here
-void Command_3 (Task task);
-//Add Prototype Command 4 here
-//Add Prototype Command 5 here
+void Command_1(Task task);
+void Command_2(Task task);
+void Command_3(Task task);
+// Add Prototype Command 4 here
+// Add Prototype Command 5 here
