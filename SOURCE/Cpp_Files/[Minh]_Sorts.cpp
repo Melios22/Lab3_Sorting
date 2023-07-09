@@ -1,6 +1,6 @@
 #include "../Header_Files/All.h"
 
-
+//? Support function for quick sort
 int findMedian(vector<int> &arr, int left, int right, int &comparisons)
 {
     int mid = left + (right - left) / 2;
@@ -15,7 +15,6 @@ int findMedian(vector<int> &arr, int left, int right, int &comparisons)
 
     return mid;
 }
-
 int partition(vector<int> &arr, int left, int right, int &comparisons)
 {
     int pIndex = findMedian(arr, left, right, comparisons); // Find the median of the first, mid, last elements
@@ -31,19 +30,31 @@ int partition(vector<int> &arr, int left, int right, int &comparisons)
     swap(arr[i - 1], arr[left]); // Switch the pivot to its position
     return i - 1;
 }
-
-void quickSort(vector<int> &arr, int left, int right, int &comparisons)
+void quick_sort(vector<int> &arr, int left, int right, int &comparisons)
 {
     if (++comparisons && left < right)
     {
         int p = partition(arr, left, right, comparisons); // Find the pivot
-        quickSort(arr, left, p - 1, comparisons);         // Sort the left part
-        quickSort(arr, p + 1, right, comparisons);        // Sort the right part
+        quick_sort(arr, left, p - 1, comparisons);         // Sort the left part
+        quick_sort(arr, p + 1, right, comparisons);        // Sort the right part
     }
 }
 
-void shellSort(vector<int> &arr, int &comparisons)
+void quickSort(vector<int> &arr, int &comparisons, double &time)
+{   
+    comparisons = 0;
+    auto startTime = chrono::high_resolution_clock::now();
+    quick_sort(arr, 0, arr.size() - 1, comparisons);
+    auto endTime = chrono::high_resolution_clock::now();
+
+    chrono::duration<double> duration = endTime - startTime;
+    time = duration.count();
+}
+
+void shellSort(vector<int> &arr, int &comparisons, double &time)
 {
+    comparisons = 0;
+    auto startTime = chrono::high_resolution_clock::now();
     int n = arr.size();
     int gap = 1;
     while (++comparisons && gap < n / 3) // generate the gap using Knuth's formula
@@ -65,10 +76,16 @@ void shellSort(vector<int> &arr, int &comparisons)
         }
         gap /= 3; // Reduce the gap follows above generated formula
     }
+    auto endTime = chrono::high_resolution_clock::now();
+    chrono::duration<double> duration = endTime - startTime;
+    time = duration.count();
 }
 
-void countingSort(vector<int>& arr, int &comparisons)
+void countingSort(vector<int>& arr, int &comparisons, double &time)
 {
+    comparisons = 0;
+    auto startTime = chrono::high_resolution_clock::now();
+
     int n = arr.size();
     int Min = arr[0], Max = arr[0];
     for (auto x : arr)
@@ -91,4 +108,8 @@ void countingSort(vector<int>& arr, int &comparisons)
             arr[ind++] = Min;
         Min++;
     }
+
+    auto endTime = chrono::high_resolution_clock::now();
+    chrono::duration<double> duration = endTime - startTime;
+    time = duration.count();
 }

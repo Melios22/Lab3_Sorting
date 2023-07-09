@@ -9,6 +9,20 @@ bool isNum(char *str)
     return true;
 }
 
+string title(char* str)
+{
+    string s = str;
+    s[0] -= 32;
+    size_t found = s.find("-");
+
+    while (found != string::npos)
+    {
+        s[found] = ' ';
+        found = s.find('-', found + 1);
+    }  
+    return s;
+}
+
 bool supportAlgorithm(string algo)
 {
     for (int i = 0; i < Algo.size(); i++)
@@ -52,7 +66,7 @@ bool getInfo4(int argc, char *argv[], Task &task)
 
     if (task.mode == "-a")
     {
-        task.al1 = argv[2];
+        task.al1 = title(argv[2]);
         task.al2 = "";
         if (argc == 5)
         {
@@ -79,8 +93,8 @@ bool getInfo4(int argc, char *argv[], Task &task)
     }
     else
     {
-        task.al1 = argv[2];
-        task.al2 = argv[3];
+        task.al1 = title(argv[2]);
+        task.al2 = title(argv[3]);
         if (argc == 5)
         {
             task.command = 4;
