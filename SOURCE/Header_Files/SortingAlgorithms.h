@@ -12,8 +12,8 @@ void quickSort(vector<int> &arr, int &comparisons, double &time);
 void countingSort(vector<int> &arr, int &comparisons, double &time);
 
 //* Nam's part
-void shakerSort(vector<int> &arr, int &comparisons);
-// void flashSort(vector<int> &arr, int &comparisons);
+void shakerSort(std::vector<int> &arr, int &comparisons, double &time);
+void FlashSort (std::vector<int> &arr, int &comparisons, double &time);
 
 //* Vy's part
 void selectionSort(vector<int> &arr, int &comparisons);
