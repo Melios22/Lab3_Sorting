@@ -1,6 +1,5 @@
 #include "../Header_Files/All.h"
 
-
 bool isNum(char *str)
 {
     for (int i = 0; i < strlen(str); i++)
@@ -9,7 +8,7 @@ bool isNum(char *str)
     return true;
 }
 
-string title(char* str)
+string title(char *str)
 {
     string s = str;
     s[0] -= 32;
@@ -18,8 +17,10 @@ string title(char* str)
     while (found != string::npos)
     {
         s[found] = ' ';
+        if (found + 1 < s.length())
+            s[found + 1] -= 32;
         found = s.find('-', found + 1);
-    }  
+    }
     return s;
 }
 
@@ -120,13 +121,17 @@ void printBreakLine()
 void printInputOrder(Task task)
 {
     if (task.inOrder == "-rand")
-        cout << "Input order: Randomize" << "\n";
+        cout << "Input order: Randomize"
+             << "\n";
     else if (task.inOrder == "-nsorted")
-        cout << "Input order: Nearly Sorted" << "\n";
+        cout << "Input order: Nearly Sorted"
+             << "\n";
     else if (task.inOrder == "-sorted")
-        cout << "Input order: Sorted" << "\n";
+        cout << "Input order: Sorted"
+             << "\n";
     else
-        cout << "Input order: Reversed" << "\n";
+        cout << "Input order: Reversed"
+             << "\n";
 }
 
 void printCmd(Task task)
@@ -169,25 +174,26 @@ void printCmd(Task task)
     }
 }
 
-//Some secondary functions
-void exportArrayToFile (vector<int> arr, string file_output)
+// Some secondary functions
+void exportArrayToFile(vector<int> arr, string file_output)
 {
-    //Open file to write
+    // Open file to write
     ofstream ofs;
     ofs.open(file_output);
     if (!ofs.is_open())
     {
-        cout << "Error: Cannot open file!" << "\n";
+        cout << "Error: Cannot open file!"
+             << "\n";
         return;
     }
 
-    //Write array into file
+    // Write array into file
     int size = arr.size();
     ofs << size << "\n";
     for (int i = 0; i < size; ++i)
         ofs << arr[i] << " ";
 
-    //Close file
+    // Close file
     ofs.close();
 }
 

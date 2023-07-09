@@ -24,6 +24,16 @@ void print2Terminal(int comparisons, double time, string requires)
     cout << "\n\n";
 }
 
+void writeInput(vector<int> arr)
+{
+    ofstream fout("input.txt");
+    fout << arr.size() << "\n";
+    for (auto x : arr)
+        fout << x << " ";
+    fout.close();
+    return;
+}
+
 void Command_2(Task task)
 {
     int n = task.inSize;
@@ -37,11 +47,12 @@ void Command_2(Task task)
     if (task.inOrder == "-rev")
         GenerateReverseData(array, n);
 
-    vector<int> arr = arr2Vec(array, n);
+    vector<int> arr = arr2Vec(array, n); //? Convert to vector
+    writeInput(arr);                     //? Write down the input to input.txt
     delete[] array;
 
-    int comparisons = 0;
-    double time = 0;
+    int comparisons = 0; //? Number of comparisions
+    double time = 0;     //? Running time
 
     /*
         if (task.al1 == "heap-sort")
@@ -71,6 +82,6 @@ void Command_2(Task task)
             todo: insertionSort(arr, comparisons);
     */
 
-   //! print the output
+    //! print the output
     print2Terminal(comparisons, time, task.outPara);
 }

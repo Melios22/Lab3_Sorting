@@ -30,14 +30,14 @@ struct Task
 };
 
 // Global variables
-vector<string> Algo = {"Selection sort",
-                       "Insertion sort",
-                       "Bubble sort",
-                       "Shaker sort",
-                       "Shell sort",
-                       "Heap sort",
-                       "Merge sort",
-                       "Quick sort",
-                       "Counting sort",
-                       "Radix sort",
-                       "Flash sort"};
+vector<string> Algo = {"Selection Sort",
+                       "Insertion Sort",
+                       "Bubble Sort",
+                       "Shaker Sort",
+                       "Shell Sort",
+                       "Heap Sort",
+                       "Merge Sort",
+                       "Quick Sort",
+                       "Counting Sort",
+                       "Radix Sort",
+                       "Flash Sort"};
