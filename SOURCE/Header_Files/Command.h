@@ -38,5 +38,5 @@ void exportArrayToFile(vector<int> arr, string file_output);
 void Command_1(Task task);
 void Command_2(Task task);
 void Command_3(Task task);
-// Add Prototype Command 4 here
+void Command_4(Task task);
 // Add Prototype Command 5 here

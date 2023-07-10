@@ -1,6 +1,5 @@
 #include "../Header_Files/All.h"
 
-
 //? Shaker Sort (Cocktail Sort/ Bidirectional Bubble Sort) - similar to bubble sort but doing from both sides
 void Shaker_Sort(std::vector<int> &arr, int &comparisons)
 {
@@ -46,7 +45,7 @@ void Flash_Sort (std::vector<int> &arr, int &comparisons)
     int Arraysize = arr.size(); //Get the size of array
     // Get the number of buckets used for this algorithm, 0.45 is the best number for helping algorithm run effectively
     int numBuckets = (int)(0.45 * Arraysize);
-
+    
     if (++comparisons && numBuckets > 0)
     {
         //Create an array save the position of the last element in each bucket
