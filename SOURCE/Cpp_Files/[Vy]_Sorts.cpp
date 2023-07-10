@@ -1,6 +1,5 @@
 #include "../Header_Files/All.h"
 
-
 //? Selection Sort - swap the min in the unsorted to the last sorted part
 void Selection_Sort(vector<int> &arr, int &comparisons)
 {
@@ -23,7 +22,7 @@ void SelectionSort(vector<int> &arr, int &comparisons, double &time)
     Selection_Sort(arr, comparisons);
     auto endTime = chrono::high_resolution_clock::now();
 
-    chrono::duration<double> duration = endTime - startTime;
+    chrono::duration<double, milli> duration = endTime - startTime;
     time = duration.count();
 }
 
@@ -52,7 +51,7 @@ void InsertionSort (vector<int> &arr, int &comparisons, double &time)
     insertion_Sort(arr, comparisons);
     auto endTime = chrono::high_resolution_clock::now();
 
-    chrono::duration<double> duration = endTime - startTime;
+    chrono::duration<double, milli> duration = endTime - startTime;
     time = duration.count();
 }
 
@@ -80,6 +79,6 @@ void BubbleSort(vector<int> &arr, int &comparisons, double &time)
     Bubble_Sort(arr, comparisons);
     auto endTime = chrono::high_resolution_clock::now();
 
-    chrono::duration<double> duration = endTime - startTime;
+    chrono::duration<double, milli> duration = endTime - startTime;
     time = duration.count();
 }

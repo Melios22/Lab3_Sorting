@@ -252,26 +252,3 @@ void print2Terminal_c(int comparisons_1, int comparisons_2, double time_1, doubl
               << "\n";
     std::cout << "\n";
 }
-
-int main(int argc, char *argv[])
-{
-    if (argc > 6 || argc < 5)
-    {
-        cout << "Wrong format!.\nPlease using one of these:\n";
-        cout << "[File] -a [Algorithm] [input file] [Output para]\n";
-        cout << "[File] -a [Algorithm] [input size] [input order] [Output para]\n";
-        cout << "[File] -a [Algorithm] [input size] [Output para]\n";
-        cout << "[File] -c [Algo 1] [Algo 2] [input file]\n";
-        cout << "[File] -c [Algo 1] [Algo 2] [input size] [input order]\n";
-        return 0;
-    }
-
-    Task task;
-    bool check = getInfo4(argc, argv, task);
-    if (!check)
-        return 0; // Return 0 for not raising an error
-
-    printCmd(task);
-
-    return 0;
-}

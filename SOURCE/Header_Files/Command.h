@@ -1,4 +1,6 @@
-#pragma once
+#ifndef Command_h
+#define Command_h
+
 #include "Library.h"
 
 //! Algorithm
@@ -40,3 +42,5 @@ void Command_2(Task task);
 void Command_3(Task task);
 void Command_4(Task task);
 void Command_5(Task task);
+
+#endif

@@ -35,7 +35,7 @@ void ShakerSort(std::vector<int> &arr, int &comparisons, double &time)
     Shaker_Sort(arr, comparisons);
     auto endTime = chrono::high_resolution_clock::now();
 
-    chrono::duration<double> duration = endTime - startTime;
+    chrono::duration<double, milli> duration = endTime - startTime;
     time = duration.count();
 }
 
@@ -101,6 +101,6 @@ void FlashSort(std::vector<int> &arr, int &comparisons, double &time)
     Flash_Sort(arr, comparisons);
     auto endTime = chrono::high_resolution_clock::now();
 
-    chrono::duration<double> duration = endTime - startTime;
+    chrono::duration<double, milli> duration = endTime - startTime;
     time = duration.count();
 }

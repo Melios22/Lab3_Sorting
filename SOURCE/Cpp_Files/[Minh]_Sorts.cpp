@@ -46,7 +46,7 @@ void QuickSort(vector<int> &arr, int &comparisons, double &time)
     Quick_Sort(arr, 0, arr.size() - 1, comparisons);
     auto endTime = chrono::high_resolution_clock::now();
 
-    chrono::duration<double> duration = endTime - startTime;
+    chrono::duration<double, milli> duration = endTime - startTime;
     time = duration.count();
 }
 
@@ -82,7 +82,7 @@ void ShellSort(vector<int> &arr, int &comparisons, double &time)
     Shell_Sort(arr, comparisons);
     auto endTime = chrono::high_resolution_clock::now();
 
-    chrono::duration<double> duration = endTime - startTime;
+    chrono::duration<double, milli> duration = endTime - startTime;
     time = duration.count();
 }
 
@@ -119,6 +119,6 @@ void CountingSort(vector<int> &arr, int &comparisons, double &time)
     Counting_Sort(arr, comparisons);
     auto endTime = chrono::high_resolution_clock::now();
 
-    chrono::duration<double> duration = endTime - startTime;
+    chrono::duration<double, milli> duration = endTime - startTime;
     time = duration.count();
 }

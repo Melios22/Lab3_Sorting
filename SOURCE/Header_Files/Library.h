@@ -1,4 +1,5 @@
-#pragma once
+#ifndef Library_h
+#define Library_h
 
 // Libraries
 #include <iostream>
@@ -32,30 +33,4 @@ struct Task
 
 typedef void (*MeasureSortingAlgo)(vector<int> &arr, int &comparisons, double &time);
 
-// Global variables
-vector<string> Algo = {"Bubble Sort",
-                       "Counting Sort",
-                       "Flash Sort",
-                       "Heap Sort",
-                       "Insertion Sort",
-                       "Merge Sort",
-                       "Quick Sort",
-                       "Radix Sort",
-                       "Selection Sort",
-                       "Shaker Sort",
-                       "Shell Sort"};
-
-vector<MeasureSortingAlgo> Algo_Measuring =
-{
-    BubbleSort,
-    CountingSort,
-    FlashSort,
-    HeapSort,
-    InsertionSort,
-    MergeSort,
-    QuickSort,
-    RadixSort,
-    SelectionSort,
-    ShakerSort,
-    ShellSort,
-};
+#endif

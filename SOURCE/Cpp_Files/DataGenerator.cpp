@@ -1,6 +1,5 @@
 ﻿#include "../Header_Files/All.h"
 
-
 template <class T>
 void HoanVi(T &a, T &b)
 {
@@ -76,12 +75,3 @@ void GenerateData(int a[], int n, int dataType)
 		printf("Error: unknown data type!\n");
 	}
 }
-
-// int main()
-// {
-//     int n = 5;
-//     int a[n];
-//     GenerateData(a, n, 3);
-//     for(int i = 0; i < n; i++) cout << a[i] << ' ';
-//     return 0;
-// }

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef SortingAlgorithms_h
+#define SortingAlgorithms_h
+
 #include "Library.h"
 
 //* Huy's part
@@ -30,3 +32,33 @@ void insertion_Sort(vector<int> &arr, int &comparisons);
 void InsertionSort (vector<int> &arr, int &comparisons, double &time);
 void Bubble_Sort(vector<int> &arr, int &comparisons);
 void BubbleSort(vector<int> &arr, int &comparisons, double &time);
+
+// Global variables
+const vector<string> Algo = {"Bubble Sort",
+                       "Counting Sort",
+                       "Flash Sort",
+                       "Heap Sort",
+                       "Insertion Sort",
+                       "Merge Sort",
+                       "Quick Sort",
+                       "Radix Sort",
+                       "Selection Sort",
+                       "Shaker Sort",
+                       "Shell Sort"};
+
+const vector<MeasureSortingAlgo> Algo_Measuring =
+{
+    BubbleSort,
+    CountingSort,
+    FlashSort,
+    HeapSort,
+    InsertionSort,
+    MergeSort,
+    QuickSort,
+    RadixSort,
+    SelectionSort,
+    ShakerSort,
+    ShellSort,
+};
+
+#endif

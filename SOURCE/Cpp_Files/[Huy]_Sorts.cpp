@@ -58,7 +58,7 @@ void HeapSort(vector<int> &arr, int &comparisons, double &time)
     Heap_Sort(arr, comparisons);
     auto endTime = chrono::high_resolution_clock::now();
 
-    chrono::duration<double> duration = endTime - startTime;
+    chrono::duration<double, milli> duration = endTime - startTime;
     time = duration.count();
 }
 
@@ -103,7 +103,7 @@ void MergeSort(vector<int> &arr, int &comparisons, double &time)
     Merge_Sort(arr, 0, arr.size() - 1, comparisons);
     auto endTime = chrono::high_resolution_clock::now();
 
-    chrono::duration<double> duration = endTime - startTime;
+    chrono::duration<double, milli> duration = endTime - startTime;
     time = duration.count();
 }
 
@@ -160,6 +160,6 @@ void RadixSort(vector<int> &arr, int &comparisons, double &time)
     Radix_Sort(arr, 10, comparisons);
     auto endTime = chrono::high_resolution_clock::now();
 
-    chrono::duration<double> duration = endTime - startTime;
+    chrono::duration<double, milli> duration = endTime - startTime;
     time = duration.count();
 }
