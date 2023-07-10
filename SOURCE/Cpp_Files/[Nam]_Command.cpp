@@ -29,8 +29,11 @@ void Command_1 (Task task)
     printCmd(task);
 
     //Measure time - comparisons
+    int comparisons; double time;
+    Algo_Measuring[task.indexAlgo1](arr, comparisons, time);
 
     //Print measured data(s) to console screen
+    print2Terminal_a(comparisons, time, task.outPara);
 
     //Export array
     exportArrayToFile(arr, "output.txt");

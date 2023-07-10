@@ -2,7 +2,7 @@
 
 
 //? Selection Sort - swap the min in the unsorted to the last sorted part
-void selectionSort(vector<int> &arr, int &comparisons)
+void Selection_Sort(vector<int> &arr, int &comparisons)
 {
     int n = arr.size();
     for (int i = 0; ++comparisons && i < n - 1; i++)
@@ -16,9 +16,19 @@ void selectionSort(vector<int> &arr, int &comparisons)
             std::swap(arr[minInd], arr[i]);
     }
 }
+void SelectionSort(vector<int> &arr, int &comparisons, double &time)
+{
+    auto startTime = chrono::high_resolution_clock::now();
+    comparisons = 0;
+    Selection_Sort(arr, comparisons);
+    auto endTime = chrono::high_resolution_clock::now();
+
+    chrono::duration<double> duration = endTime - startTime;
+    time = duration.count();
+}
 
 //? Insertion Sort - move the key to its correct pos by shifting the other elements
-void insertionSort(vector<int> &arr, int &comparisons)
+void insertion_Sort(vector<int> &arr, int &comparisons)
 {
     int n = arr.size();
     for (int i = 1; ++comparisons && i < n; i++)
@@ -35,9 +45,19 @@ void insertionSort(vector<int> &arr, int &comparisons)
         arr[j + 1] = key; // Place it in the correct position
     }
 }
+void InsertionSort (vector<int> &arr, int &comparisons, double &time)
+{
+    auto startTime = chrono::high_resolution_clock::now();
+    comparisons = 0;
+    insertion_Sort(arr, comparisons);
+    auto endTime = chrono::high_resolution_clock::now();
+
+    chrono::duration<double> duration = endTime - startTime;
+    time = duration.count();
+}
 
 //? Bubble Sort - swap the largest element to the last in every loop
-void bubbleSort(vector<int> &arr, int &comparisons)
+void Bubble_Sort(vector<int> &arr, int &comparisons)
 {
     int n = arr.size();
     for (int i = 0; ++comparisons && i < n - 1; i++)
@@ -52,4 +72,14 @@ void bubbleSort(vector<int> &arr, int &comparisons)
         if (++comparisons && !swapped) // If there is no swap, the array is sorted
             break;
     }
+}
+void BubbleSort(vector<int> &arr, int &comparisons, double &time)
+{
+    auto startTime = chrono::high_resolution_clock::now();
+    comparisons = 0;
+    Bubble_Sort(arr, comparisons);
+    auto endTime = chrono::high_resolution_clock::now();
+
+    chrono::duration<double> duration = endTime - startTime;
+    time = duration.count();
 }

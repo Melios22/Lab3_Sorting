@@ -1,5 +1,32 @@
 #include "../Header_Files/All.h"
 
+vector<int> arr2Vec(int *arr, int n)
+{
+    vector<int> vec(n);
+    for (int i = 0; i < n; i++)
+        vec[i] = arr[i];
+    return vec;
+}
+
+int SearchAlgorithm (vector<string> Algo, string target)
+{
+    int left = 0; int right = Algo.size() - 1;
+
+    while (left <= right)
+    {
+        int mid = (left + right) >> 1;
+
+        if (Algo[mid] == target)
+            return mid;
+        else if (Algo[mid] < target)
+            left = mid + 1;
+        else
+            right = mid - 1;
+    }
+
+    return -1;
+}
+
 bool isNum(char *str)
 {
     for (int i = 0; i < strlen(str); i++)
@@ -68,7 +95,9 @@ bool getInfo4(int argc, char *argv[], Task &task)
     if (task.mode == "-a")
     {
         task.al1 = title(argv[2]);
+        task.indexAlgo1 = SearchAlgorithm(Algo, task.al1);
         task.al2 = "";
+        task.indexAlgo2 = -1;
         if (argc == 5)
         {
             if (!isNum(argv[3])) // Check for using file or not
@@ -95,7 +124,9 @@ bool getInfo4(int argc, char *argv[], Task &task)
     else
     {
         task.al1 = title(argv[2]);
+        task.indexAlgo1 = SearchAlgorithm(Algo, task.al1);
         task.al2 = title(argv[3]);
+        task.indexAlgo2 = SearchAlgorithm(Algo, task.al2);
         if (argc == 5)
         {
             task.command = 4;
@@ -195,6 +226,31 @@ void exportArrayToFile(vector<int> arr, string file_output)
 
     // Close file
     ofs.close();
+}
+
+void print2Terminal_a(int comparisons, double time, string requires)
+{
+    if (requires == "-time")
+        cout << "Running time: " << time << " ms"
+             << "\n";
+    else if (requires == "-comp")
+        cout << "Comparisons: " << comparisons << "\n";
+    else if (requires == "-both")
+    {
+        cout << "Running time: " << time << " ms"
+             << "\n";
+        cout << "Comparisons: " << comparisons << "\n";
+    }
+    cout << "\n";
+}
+
+void print2Terminal_c(int comparisons_1, int comparisons_2, double time_1, double time_2)
+{
+    std::cout << "Running time: " << time_1 << " ms | " << time_2 << " ms"
+              << "\n";
+    std::cout << "Comparisons: " << comparisons_1 << " | " << comparisons_2
+              << "\n";
+    std::cout << "\n";
 }
 
 int main(int argc, char *argv[])

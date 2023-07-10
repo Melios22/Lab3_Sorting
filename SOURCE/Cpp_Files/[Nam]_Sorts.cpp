@@ -2,10 +2,9 @@
 
 
 //? Shaker Sort (Cocktail Sort/ Bidirectional Bubble Sort) - similar to bubble sort but doing from both sides
-void shakerSort(std::vector<int> &arr, int &comparisons, double &time)
+void Shaker_Sort(std::vector<int> &arr, int &comparisons)
 {
     int ArraySize = arr.size();
-    auto startTime = chrono::high_resolution_clock::now();
     int left = 0, right = ArraySize - 1;
     while (++comparisons && left < right)
     {
@@ -29,18 +28,24 @@ void shakerSort(std::vector<int> &arr, int &comparisons, double &time)
         if (++comparisons && !swapped) // There is no swap, the array is sorted
             break;
     }
+}
+void ShakerSort(std::vector<int> &arr, int &comparisons, double &time)
+{
+    auto startTime = chrono::high_resolution_clock::now();
+    comparisons = 0;
+    Shaker_Sort(arr, comparisons);
     auto endTime = chrono::high_resolution_clock::now();
+
     chrono::duration<double> duration = endTime - startTime;
     time = duration.count();
 }
 
 //? Flash Sort - implement Bucket Sort, a fast sorting algorithm
-void FlashSort (std::vector<int> &arr, int &comparisons, double &time)
+void Flash_Sort (std::vector<int> &arr, int &comparisons)
 {
     int Arraysize = arr.size(); //Get the size of array
     // Get the number of buckets used for this algorithm, 0.45 is the best number for helping algorithm run effectively
     int numBuckets = (int)(0.45 * Arraysize);
-    auto startTime = chrono::high_resolution_clock::now();
 
     if (++comparisons && numBuckets > 0)
     {
@@ -88,8 +93,15 @@ void FlashSort (std::vector<int> &arr, int &comparisons, double &time)
 
         delete[] EndOfBucket; //Deallocation
     }
-    insertionSort(arr, comparisons);
+    insertion_Sort(arr, comparisons);
+}
+void FlashSort(std::vector<int> &arr, int &comparisons, double &time)
+{
+    auto startTime = chrono::high_resolution_clock::now();
+    comparisons = 0;
+    Flash_Sort(arr, comparisons);
     auto endTime = chrono::high_resolution_clock::now();
+
     chrono::duration<double> duration = endTime - startTime;
     time = duration.count();
 }

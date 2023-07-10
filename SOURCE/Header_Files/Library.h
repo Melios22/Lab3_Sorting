@@ -21,6 +21,7 @@ struct Task
     int command;     // 1, 2, 3, 4, 5
     string mode;     // "-a", "-c" for compare or perform algo
     string al1, al2; // Algorithm mentioned
+    int indexAlgo1, indexAlgo2; //Index of each algorithm in Algo array
     string inFile;   // Input file
     string outPara;  // output parameters: "-time", "-comp", "-both"
 
@@ -29,15 +30,32 @@ struct Task
     string inOrder; // "-rand", "-nsorted", "-sorted", "-rev"
 };
 
+typedef void (*MeasureSortingAlgo)(vector<int> &arr, int &comparisons, double &time);
+
 // Global variables
-vector<string> Algo = {"Selection Sort",
-                       "Insertion Sort",
-                       "Bubble Sort",
-                       "Shaker Sort",
-                       "Shell Sort",
+vector<string> Algo = {"Bubble Sort",
+                       "Counting Sort",
+                       "Flash Sort",
                        "Heap Sort",
+                       "Insertion Sort",
                        "Merge Sort",
                        "Quick Sort",
-                       "Counting Sort",
                        "Radix Sort",
-                       "Flash Sort"};
+                       "Selection Sort",
+                       "Shaker Sort",
+                       "Shell Sort"};
+
+vector<MeasureSortingAlgo> Algo_Measuring =
+{
+    BubbleSort,
+    CountingSort,
+    FlashSort,
+    HeapSort,
+    InsertionSort,
+    MergeSort,
+    QuickSort,
+    RadixSort,
+    SelectionSort,
+    ShakerSort,
+    ShellSort,
+};

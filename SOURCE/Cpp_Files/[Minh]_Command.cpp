@@ -1,39 +1,5 @@
 #include "../Header_Files/All.h"
 
-vector<int> arr2Vec(int *arr, int n)
-{
-    vector<int> vec(n);
-    for (int i = 0; i < n; i++)
-        vec[i] = arr[i];
-    return vec;
-}
-
-void print2Terminal(int comparisons, double time, string requires)
-{
-    if (requires == "-time")
-        cout << "Running time: " << time << " seconds"
-             << "\n";
-    else if (requires == "-comp")
-        cout << "Comparisons: " << comparisons << "\n";
-    else if (requires == "-both")
-    {
-        cout << "Running time: " << time << " seconds"
-             << "\n";
-        cout << "Comparisons: " << comparisons << "\n";
-    }
-    cout << "\n\n";
-}
-
-void writeInput(vector<int> arr)
-{
-    ofstream fout("input.txt");
-    fout << arr.size() << "\n";
-    for (auto x : arr)
-        fout << x << " ";
-    fout.close();
-    return;
-}
-
 void Command_2(Task task)
 {
     int n = task.inSize;
@@ -48,7 +14,7 @@ void Command_2(Task task)
         GenerateReverseData(array, n);
 
     vector<int> arr = arr2Vec(array, n); //? Convert to vector
-    writeInput(arr);                     //? Write down the input to input.txt
+    exportArrayToFile(arr, "input.txt");        //? Write down the input to input.txt
     delete[] array;
 
     int comparisons = 0; //? Number of comparisions
@@ -83,5 +49,5 @@ void Command_2(Task task)
     */
 
     //! print the output
-    print2Terminal(comparisons, time, task.outPara);
+    print2Terminal_a(comparisons, time, task.outPara);
 }
