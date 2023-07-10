@@ -39,4 +39,4 @@ void Command_1(Task task);
 void Command_2(Task task);
 void Command_3(Task task);
 // Add Prototype Command 4 here
-// Add Prototype Command 5 here
+void Command_5(Task task);
