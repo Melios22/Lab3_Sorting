@@ -40,12 +40,28 @@ void ShakerSort(std::vector<int> &arr, int &comparisons, double &time)
 }
 
 //? Flash Sort - implement Bucket Sort, a fast sorting algorithm
+void Insertion_Sort_Variant(std::vector<int> &arr, int left, int right, int &comparisons)
+{
+    for (int i = left + 1; ++comparisons && i <= right; i++)
+    {
+        int key = arr[i];
+        int j = i - 1;
+
+        while (++comparisons && j >= left && ++comparisons && arr[j] > key) // Move the other elements
+        {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+
+        arr[j + 1] = key; // Place it in the correct position
+    }
+}
 void Flash_Sort (std::vector<int> &arr, int &comparisons)
 {
     int Arraysize = arr.size(); //Get the size of array
     // Get the number of buckets used for this algorithm, 0.45 is the best number for helping algorithm run effectively
     int numBuckets = (int)(0.45 * Arraysize);
-    
+
     if (++comparisons && numBuckets > 0)
     {
         //Create an array save the position of the last element in each bucket
@@ -74,6 +90,11 @@ void Flash_Sort (std::vector<int> &arr, int &comparisons)
         for (int i = 1; ++comparisons && i < numBuckets; ++i)
             EndOfBucket[i] += EndOfBucket[i - 1];
 
+        //Save the position of each last element in bucket
+        std::vector<int> saveBucketSize;
+        for (int i = 0; ++comparisons && i < numBuckets; ++i)
+            saveBucketSize.push_back(EndOfBucket[i]);
+
         //Move the maximum number to the first position
         int temp = arr[indexMax];
         arr[indexMax] = arr[0];
@@ -91,8 +112,17 @@ void Flash_Sort (std::vector<int> &arr, int &comparisons)
         }
 
         delete[] EndOfBucket; //Deallocation
+
+        for (int i = 0; ++comparisons && i < numBuckets; ++i)
+        {
+            if (++comparisons && i == 0)
+                Insertion_Sort_Variant(arr, 0, saveBucketSize[i] - 1, comparisons);
+            else
+                Insertion_Sort_Variant(arr, saveBucketSize[i - 1], saveBucketSize[i] - 1, comparisons);
+        }
     }
-    insertion_Sort(arr, comparisons);
+    else
+        Insertion_Sort_Variant(arr, 0, arr.size() - 1, comparisons);
 }
 void FlashSort(std::vector<int> &arr, int &comparisons, double &time)
 {

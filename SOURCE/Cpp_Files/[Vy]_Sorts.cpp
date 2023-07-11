@@ -27,7 +27,7 @@ void SelectionSort(vector<int> &arr, int &comparisons, double &time)
 }
 
 //? Insertion Sort - move the key to its correct pos by shifting the other elements
-void insertion_Sort(vector<int> &arr, int &comparisons)
+void Insertion_Sort(vector<int> &arr, int &comparisons)
 {
     int n = arr.size();
     for (int i = 1; ++comparisons && i < n; i++)
@@ -48,7 +48,7 @@ void InsertionSort (vector<int> &arr, int &comparisons, double &time)
 {
     auto startTime = chrono::high_resolution_clock::now();
     comparisons = 0;
-    insertion_Sort(arr, comparisons);
+    Insertion_Sort(arr, comparisons);
     auto endTime = chrono::high_resolution_clock::now();
 
     chrono::duration<double, milli> duration = endTime - startTime;

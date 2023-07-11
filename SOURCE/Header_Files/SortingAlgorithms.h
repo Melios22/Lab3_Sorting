@@ -28,7 +28,7 @@ void FlashSort(std::vector<int> &arr, int &comparisons, double &time);
 //* Vy's part
 void Selection_Sort(vector<int> &arr, int &comparisons);
 void SelectionSort(vector<int> &arr, int &comparisons, double &time);
-void insertion_Sort(vector<int> &arr, int &comparisons);
+void Insertion_Sort(vector<int> &arr, int &comparisons);
 void InsertionSort (vector<int> &arr, int &comparisons, double &time);
 void Bubble_Sort(vector<int> &arr, int &comparisons);
 void BubbleSort(vector<int> &arr, int &comparisons, double &time);
