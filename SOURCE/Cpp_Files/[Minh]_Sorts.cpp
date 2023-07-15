@@ -1,7 +1,7 @@
 #include "../Header_Files/All.h"
 
 //? Quick Sort: Write something
-int findMedian(vector<int> &arr, int left, int right, int &comparisons)
+int findMedian(vector<int> &arr, int left, int right, long long &comparisons)
 {
     int mid = left + (right - left) / 2;
 
@@ -15,7 +15,7 @@ int findMedian(vector<int> &arr, int left, int right, int &comparisons)
 
     return mid;
 }
-int partition(vector<int> &arr, int left, int right, int &comparisons)
+int partition(vector<int> &arr, int left, int right, long long &comparisons)
 {
     int pIndex = findMedian(arr, left, right, comparisons); // Find the median of the first, mid, last elements
     int pivot = arr[pIndex];
@@ -30,17 +30,17 @@ int partition(vector<int> &arr, int left, int right, int &comparisons)
     swap(arr[i - 1], arr[left]); // Switch the pivot to its position
     return i - 1;
 }
-void Quick_Sort(vector<int> &arr, int left, int right, int &comparisons)
+void Quick_Sort(vector<int> &arr, int left, int right, long long &comparisons)
 {
     if (++comparisons && left < right)
     {
         int p = partition(arr, left, right, comparisons); // Find the pivot
-        Quick_Sort(arr, left, p - 1, comparisons);         // Sort the left part
-        Quick_Sort(arr, p + 1, right, comparisons);        // Sort the right part
+        Quick_Sort(arr, left, p - 1, comparisons);        // Sort the left part
+        Quick_Sort(arr, p + 1, right, comparisons);       // Sort the right part
     }
 }
-void QuickSort(vector<int> &arr, int &comparisons, double &time)
-{   
+void QuickSort(vector<int> &arr, long long &comparisons, double &time)
+{
     auto startTime = chrono::high_resolution_clock::now();
     comparisons = 0;
     Quick_Sort(arr, 0, arr.size() - 1, comparisons);
@@ -51,7 +51,7 @@ void QuickSort(vector<int> &arr, int &comparisons, double &time)
 }
 
 //?Shell Sort: Write something
-void Shell_Sort(vector<int> &arr, int &comparisons)
+void Shell_Sort(vector<int> &arr, long long &comparisons)
 {
     int n = arr.size();
     int gap = 1;
@@ -75,7 +75,7 @@ void Shell_Sort(vector<int> &arr, int &comparisons)
         gap /= 3; // Reduce the gap follows above generated formula
     }
 }
-void ShellSort(vector<int> &arr, int &comparisons, double &time)
+void ShellSort(vector<int> &arr, long long &comparisons, double &time)
 {
     auto startTime = chrono::high_resolution_clock::now();
     comparisons = 0;
@@ -87,7 +87,7 @@ void ShellSort(vector<int> &arr, int &comparisons, double &time)
 }
 
 //? Counting Sort: Write something
-void Counting_Sort(vector<int> &arr, int &comparisons)
+void Counting_Sort(vector<int> &arr, long long &comparisons)
 {
     int n = arr.size();
     int Min = arr[0], Max = arr[0];
@@ -112,7 +112,7 @@ void Counting_Sort(vector<int> &arr, int &comparisons)
         Min++;
     }
 }
-void CountingSort(vector<int> &arr, int &comparisons, double &time)
+void CountingSort(vector<int> &arr, long long &comparisons, double &time)
 {
     auto startTime = chrono::high_resolution_clock::now();
     comparisons = 0;

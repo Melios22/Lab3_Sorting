@@ -1,7 +1,7 @@
 #include "../Header_Files/All.h"
 
 //? Shaker Sort (Cocktail Sort/ Bidirectional Bubble Sort) - similar to bubble sort but doing from both sides
-void Shaker_Sort(std::vector<int> &arr, int &comparisons)
+void Shaker_Sort(std::vector<int> &arr, long long &comparisons)
 {
     int ArraySize = arr.size();
     int left = 0, right = ArraySize - 1;
@@ -28,7 +28,7 @@ void Shaker_Sort(std::vector<int> &arr, int &comparisons)
             break;
     }
 }
-void ShakerSort(std::vector<int> &arr, int &comparisons, double &time)
+void ShakerSort(std::vector<int> &arr, long long &comparisons, double &time)
 {
     auto startTime = chrono::high_resolution_clock::now();
     comparisons = 0;
@@ -40,7 +40,7 @@ void ShakerSort(std::vector<int> &arr, int &comparisons, double &time)
 }
 
 //? Flash Sort - implement Bucket Sort, a fast sorting algorithm
-void Insertion_Sort_Variant(std::vector<int> &arr, int left, int right, int &comparisons)
+void Insertion_Sort_Variant(std::vector<int> &arr, int left, int right, long long &comparisons)
 {
     for (int i = left + 1; ++comparisons && i <= right; i++)
     {
@@ -56,21 +56,22 @@ void Insertion_Sort_Variant(std::vector<int> &arr, int left, int right, int &com
         arr[j + 1] = key; // Place it in the correct position
     }
 }
-void Flash_Sort (std::vector<int> &arr, int &comparisons)
+void Flash_Sort(std::vector<int> &arr, long long &comparisons)
 {
-    int Arraysize = arr.size(); //Get the size of array
+    int Arraysize = arr.size(); // Get the size of array
     // Get the number of buckets used for this algorithm, 0.45 is the best number for helping algorithm run effectively
     int numBuckets = (int)(0.45 * Arraysize);
 
     if (++comparisons && numBuckets > 0)
     {
-        //Create an array save the position of the last element in each bucket
-        int* EndOfBucket = new int [numBuckets];
+        // Create an array save the position of the last element in each bucket
+        int *EndOfBucket = new int[numBuckets];
         for (int i = 0; ++comparisons && i < numBuckets; ++i)
             EndOfBucket[i] = 0;
 
-        //Find the minimum value and the position of the maximum value in the array
-        int minValue = arr[0]; int indexMax = 0;
+        // Find the minimum value and the position of the maximum value in the array
+        int minValue = arr[0];
+        int indexMax = 0;
         for (int i = 1; ++comparisons && i < Arraysize; ++i)
         {
             if (++comparisons && arr[i] < minValue)
@@ -79,28 +80,28 @@ void Flash_Sort (std::vector<int> &arr, int &comparisons)
                 indexMax = i;
         }
 
-        //Deliver each element into a certain bucket
+        // Deliver each element into a certain bucket
         for (int i = 0; ++comparisons && i < Arraysize; ++i)
         {
             int indexBucket = (int)(((double)((numBuckets - 1) * (arr[i] - minValue))) / (arr[indexMax] - minValue));
             EndOfBucket[indexBucket]++;
         }
 
-        //Used prefix sum to identify precisely the position of the last element in each bucket
+        // Used prefix sum to identify precisely the position of the last element in each bucket
         for (int i = 1; ++comparisons && i < numBuckets; ++i)
             EndOfBucket[i] += EndOfBucket[i - 1];
 
-        //Save the position of each last element in bucket
+        // Save the position of each last element in bucket
         std::vector<int> saveBucketSize;
         for (int i = 0; ++comparisons && i < numBuckets; ++i)
             saveBucketSize.push_back(EndOfBucket[i]);
 
-        //Move the maximum number to the first position
+        // Move the maximum number to the first position
         int temp = arr[indexMax];
         arr[indexMax] = arr[0];
         arr[0] = temp;
 
-        //Move each element to exact bucket
+        // Move each element to exact bucket
         for (int i = 0; ++comparisons && i < Arraysize; ++i)
         {
             int indexBucket = (int)(((double)((numBuckets - 1) * (arr[0] - minValue))) / (temp - minValue));
@@ -111,7 +112,7 @@ void Flash_Sort (std::vector<int> &arr, int &comparisons)
                 break;
         }
 
-        delete[] EndOfBucket; //Deallocation
+        delete[] EndOfBucket; // Deallocation
 
         for (int i = 0; ++comparisons && i < numBuckets; ++i)
         {
@@ -124,7 +125,7 @@ void Flash_Sort (std::vector<int> &arr, int &comparisons)
     else
         Insertion_Sort_Variant(arr, 0, arr.size() - 1, comparisons);
 }
-void FlashSort(std::vector<int> &arr, int &comparisons, double &time)
+void FlashSort(std::vector<int> &arr, long long &comparisons, double &time)
 {
     auto startTime = chrono::high_resolution_clock::now();
     comparisons = 0;

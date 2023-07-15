@@ -8,9 +8,10 @@ vector<int> arr2Vec(int *arr, int n)
     return vec;
 }
 
-int SearchAlgorithm (vector<string> Algo, string target)
+int SearchAlgorithm(vector<string> Algo, string target)
 {
-    int left = 0; int right = Algo.size() - 1;
+    int left = 0;
+    int right = Algo.size() - 1;
 
     while (left <= right)
     {
@@ -244,7 +245,7 @@ void print2Terminal_a(int comparisons, double time, string requires)
     cout << "\n";
 }
 
-void print2Terminal_c(int comparisons_1, int comparisons_2, double time_1, double time_2)
+void print2Terminal_c(long long comparisons_1, long long comparisons_2, double time_1, double time_2)
 {
     std::cout << "Running time: " << time_1 << " ms | " << time_2 << " ms"
               << "\n";

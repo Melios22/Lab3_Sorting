@@ -1,7 +1,7 @@
 #include "../Header_Files/All.h"
 
 //? Selection Sort - swap the min in the unsorted to the last sorted part
-void Selection_Sort(vector<int> &arr, int &comparisons)
+void Selection_Sort(vector<int> &arr, long long &comparisons)
 {
     int n = arr.size();
     for (int i = 0; ++comparisons && i < n - 1; i++)
@@ -15,7 +15,7 @@ void Selection_Sort(vector<int> &arr, int &comparisons)
             std::swap(arr[minInd], arr[i]);
     }
 }
-void SelectionSort(vector<int> &arr, int &comparisons, double &time)
+void SelectionSort(vector<int> &arr, long long &comparisons, double &time)
 {
     auto startTime = chrono::high_resolution_clock::now();
     comparisons = 0;
@@ -27,7 +27,7 @@ void SelectionSort(vector<int> &arr, int &comparisons, double &time)
 }
 
 //? Insertion Sort - move the key to its correct pos by shifting the other elements
-void Insertion_Sort(vector<int> &arr, int &comparisons)
+void Insertion_Sort(vector<int> &arr, long long &comparisons)
 {
     int n = arr.size();
     for (int i = 1; ++comparisons && i < n; i++)
@@ -44,7 +44,7 @@ void Insertion_Sort(vector<int> &arr, int &comparisons)
         arr[j + 1] = key; // Place it in the correct position
     }
 }
-void InsertionSort (vector<int> &arr, int &comparisons, double &time)
+void InsertionSort(vector<int> &arr, long long &comparisons, double &time)
 {
     auto startTime = chrono::high_resolution_clock::now();
     comparisons = 0;
@@ -56,7 +56,7 @@ void InsertionSort (vector<int> &arr, int &comparisons, double &time)
 }
 
 //? Bubble Sort - swap the largest element to the last in every loop
-void Bubble_Sort(vector<int> &arr, int &comparisons)
+void Bubble_Sort(vector<int> &arr, long long &comparisons)
 {
     int n = arr.size();
     for (int i = 0; ++comparisons && i < n - 1; i++)
@@ -72,7 +72,7 @@ void Bubble_Sort(vector<int> &arr, int &comparisons)
             break;
     }
 }
-void BubbleSort(vector<int> &arr, int &comparisons, double &time)
+void BubbleSort(vector<int> &arr, long long &comparisons, double &time)
 {
     auto startTime = chrono::high_resolution_clock::now();
     comparisons = 0;

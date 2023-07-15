@@ -1,7 +1,7 @@
 #include "../Header_Files/All.h"
 
 //? Heap Sort (enhancing from selection sort) - building a heap structure and gradually swap the root with the last element
-void heapify(vector<int> &arr, int size, int pos, int &comparisons)
+void heapify(vector<int> &arr, int size, int pos, long long &comparisons)
 {
     int v = arr[pos];
     bool isHeap = false;
@@ -16,12 +16,11 @@ void heapify(vector<int> &arr, int size, int pos, int &comparisons)
         {
             std::swap(arr[pos], arr[j]); // Reposition the node
             pos = j;                     // Loop to check validity of the node just has swapped
-            ++comparisons;
         }
     }
     arr[pos] = v;
 }
-void heapifyRecursion(vector<int> &arr, int size, int pos, int &comparisons)
+void heapifyRecursion(vector<int> &arr, int size, int pos, long long &comparisons)
 {
     int largest = pos;
     int left = 2 * pos + 1;
@@ -34,24 +33,24 @@ void heapifyRecursion(vector<int> &arr, int size, int pos, int &comparisons)
 
     if (++comparisons && largest != pos) // If the position differ from the declaration, it means the child in bigger than its parent
     {
-        std::swap(arr[pos], arr[largest]); // Swap to its parent
+        std::swap(arr[pos], arr[largest]);                 // Swap to its parent
         heapifyRecursion(arr, size, largest, comparisons); // Check validity of the new child
     }
     return;
 }
-void Heap_Sort(vector<int> &arr, int &comparisons)
+void Heap_Sort(vector<int> &arr, long long &comparisons)
 {
     for (int i = arr.size() / 2 - 1; ++comparisons && i >= 0; i--) // Loop from the middle to heapify the whole array
         heapify(arr, arr.size(), i, comparisons);
     // heapifyRecursion(arr, n, i);
     for (int i = arr.size() - 1; ++comparisons && i > 0; i--)
     {
-        std::swap(arr[0], arr[i]); // Swap the first element with the last unsorted element
-        heapify(arr, i, 0, comparisons);        // Heapify the semi-heap again with the reduced size
+        std::swap(arr[0], arr[i]);       // Swap the first element with the last unsorted element
+        heapify(arr, i, 0, comparisons); // Heapify the semi-heap again with the reduced size
         // heapifyRecursion(arr, i, 0);
     }
 }
-void HeapSort(vector<int> &arr, int &comparisons, double &time)
+void HeapSort(vector<int> &arr, long long &comparisons, double &time)
 {
     auto startTime = chrono::high_resolution_clock::now();
     comparisons = 0;
@@ -63,14 +62,14 @@ void HeapSort(vector<int> &arr, int &comparisons, double &time)
 }
 
 //? Merge Sort - divide the array into small part and combine accordingly
-void merge(vector<int> &arr, int left, int mid, int right, int &comparisons)
+void merge(vector<int> &arr, int left, int mid, int right, long long &comparisons)
 {
-    int* tmp_arr = new int[right - left + 1]; // Create a temporary array
+    int *tmp_arr = new int[right - left + 1]; // Create a temporary array
     int i = left, j = mid + 1, k = 0;
 
     while (++comparisons && (i <= mid && j <= right))
     {
-        if (++comparisons && (arr[i] < arr[j]))// Comparing element ant index i, j of the 2 small array, put it accordingly into the tmp list
+        if (++comparisons && (arr[i] < arr[j])) // Comparing element ant index i, j of the 2 small array, put it accordingly into the tmp list
             tmp_arr[k++] = arr[i++];
         else
         {
@@ -86,17 +85,17 @@ void merge(vector<int> &arr, int left, int mid, int right, int &comparisons)
         arr[i] = tmp_arr[k];
     delete[] tmp_arr;
 }
-void Merge_Sort(vector<int> &arr, int left, int right, int &comparisons)
+void Merge_Sort(vector<int> &arr, int left, int right, long long &comparisons)
 {
     if (++comparisons && (left < right))
     {
-        int mid = left + (right - left) / 2; // get the mid, avoiding overflowing
-        Merge_Sort(arr, left, mid, comparisons);           // Recursively divide into small lists
+        int mid = left + (right - left) / 2;     // get the mid, avoiding overflowing
+        Merge_Sort(arr, left, mid, comparisons); // Recursively divide into small lists
         Merge_Sort(arr, mid + 1, right, comparisons);
         merge(arr, left, mid, right, comparisons); // Merge the sorted lists together
     }
 }
-void MergeSort(vector<int> &arr, int &comparisons, double &time)
+void MergeSort(vector<int> &arr, long long &comparisons, double &time)
 {
     auto startTime = chrono::high_resolution_clock::now();
     comparisons = 0;
@@ -108,9 +107,9 @@ void MergeSort(vector<int> &arr, int &comparisons, double &time)
 }
 
 //? Radix Sort
-void Radix_Sort(vector<int> &arr, int base, int &comparisons)
+void Radix_Sort(vector<int> &arr, int base, long long &comparisons)
 {
-    std::queue<int>* bucket = new std::queue<int>[base];
+    std::queue<int> *bucket = new std::queue<int>[base];
     int longest = 0;
     int minVal = arr[0];
     bool negative = false;
@@ -153,7 +152,7 @@ void Radix_Sort(vector<int> &arr, int base, int &comparisons)
 
     delete[] bucket;
 }
-void RadixSort(vector<int> &arr, int &comparisons, double &time)
+void RadixSort(vector<int> &arr, long long &comparisons, double &time)
 {
     auto startTime = chrono::high_resolution_clock::now();
     comparisons = 0;
