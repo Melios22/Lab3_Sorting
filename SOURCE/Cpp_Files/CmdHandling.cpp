@@ -229,7 +229,7 @@ void exportArrayToFile(vector<int> arr, string file_output)
     ofs.close();
 }
 
-void print2Terminal_a(int comparisons, double time, string requires)
+void print2Terminal_a(long long comparisons, double time, string requires)
 {
     if (requires == "-time")
         cout << "Running time: " << time << " ms"

@@ -83,7 +83,8 @@ void Flash_Sort(std::vector<int> &arr, long long &comparisons)
         // Deliver each element into a certain bucket
         for (int i = 0; ++comparisons && i < Arraysize; ++i)
         {
-            int indexBucket = (int)(((double)((numBuckets - 1) * (arr[i] - minValue))) / (arr[indexMax] - minValue));
+            double temp = (double)(numBuckets - 1)/(arr[indexMax] - minValue);
+            int indexBucket = (int)(temp *(arr[i] - minValue));
             EndOfBucket[indexBucket]++;
         }
 
@@ -104,7 +105,8 @@ void Flash_Sort(std::vector<int> &arr, long long &comparisons)
         // Move each element to exact bucket
         for (int i = 0; ++comparisons && i < Arraysize; ++i)
         {
-            int indexBucket = (int)(((double)((numBuckets - 1) * (arr[0] - minValue))) / (temp - minValue));
+            double tempValue = (double)(numBuckets - 1)/(temp - minValue);
+            int indexBucket = (int)(tempValue * (arr[0] - minValue));
             std::swap(arr[0], arr[EndOfBucket[indexBucket] - 1]);
 
             EndOfBucket[indexBucket]--;
