@@ -31,6 +31,7 @@ struct Task
     string inOrder; // "-rand", "-nsorted", "-sorted", "-rev"
 };
 
-typedef void (*MeasureSortingAlgo)(vector<int> &arr, long long &comparisons, double &time);
+typedef void (*MeasureComp)(vector<int> &arr, long long &comparisons);
+typedef void (*MeasureTime)(vector<int> &arr, double &time);
 
 #endif

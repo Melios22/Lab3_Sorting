@@ -48,16 +48,30 @@ const vector<string> Algo = {"Bubble Sort",
                              "Shaker Sort",
                              "Shell Sort"};
 
-const vector<MeasureSortingAlgo> Algo_Measuring = {
-    BubbleSort,
-    CountingSort,
-    FlashSort,
-    HeapSort,
-    InsertionSort,
-    MergeSort,
-    QuickSort,
-    RadixSort,
-    SelectionSort,
-    ShakerSort,
-    ShellSort,
+const vector<MeasureComp> Algo_Measuring_Comp = {
+    BubbleSortComp,
+    CountingSortComp,
+    FlashSortComp,
+    HeapSortComp,
+    InsertionSortComp,
+    MergeSortComp,
+    QuickSortComp,
+    RadixSortComp,
+    SelectionSortComp,
+    ShakerSortComp,
+    ShellSortComp,
+};
+
+const vector<MeasureTime> Algo_Measuring_Time = {
+    BubbleSortTime,
+    CountingSortTime,
+    FlashSortTime,
+    HeapSortTime,
+    InsertionSortTime,
+    MergeSortTime,
+    QuickSortTime,
+    RadixSortTime,
+    SelectionSortTime,
+    ShakerSortTime,
+    ShellSortTime,
 };

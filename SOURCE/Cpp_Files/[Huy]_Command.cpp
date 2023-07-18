@@ -26,10 +26,12 @@ void Command_5(Task task)
     // comparison
     long long comparisons_1 = 0;
     double time_1 = 0.0;
-    Algo_Measuring[task.indexAlgo1](arr1, comparisons_1, time_1);
+    Algo_Measuring_Comp[task.indexAlgo1](arr1, comparisons_1);
+    Algo_Measuring_Time[task.indexAlgo1](arr1, time_1);
     long long comparisons_2 = 0;
     double time_2 = 0.0;
-    Algo_Measuring[task.indexAlgo1](arr2, comparisons_2, time_2);
+    Algo_Measuring_Comp[task.indexAlgo1](arr2, comparisons_2);
+    Algo_Measuring_Time[task.indexAlgo1](arr2, time_2);
 
     print2Terminal_c(comparisons_1, comparisons_2, time_1, time_2);
 }
