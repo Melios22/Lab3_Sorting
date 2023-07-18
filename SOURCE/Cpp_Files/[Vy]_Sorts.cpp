@@ -1,8 +1,9 @@
 #include "../Header_Files/All.h"
 
-//? Selection Sort - swap the min in the unsorted to the last sorted part
+//? Count comparisons
 void SelectionSortComp(vector<int> &arr, long long &comparisons)
 {
+    comparisons = 0;
     int n = arr.size();
     for (int i = 0; ++comparisons && i < n - 1; i++)
     {
@@ -15,6 +16,7 @@ void SelectionSortComp(vector<int> &arr, long long &comparisons)
             std::swap(arr[minInd], arr[i]);
     }
 }
+//? Measuring time
 void SelectionSortTime(vector<int> &arr, double &time)
 {
     auto startTime = chrono::high_resolution_clock::now();
@@ -35,9 +37,10 @@ void SelectionSortTime(vector<int> &arr, double &time)
     time = duration.count();
 }
 
-//? Insertion Sort - move the key to its correct pos by shifting the other elements
+//? Count comparisons
 void InsertionSortComp(vector<int> &arr, long long &comparisons)
 {
+    comparisons = 0;
     int n = arr.size();
     for (int i = 1; ++comparisons && i < n; i++)
     {
@@ -53,6 +56,7 @@ void InsertionSortComp(vector<int> &arr, long long &comparisons)
         arr[j + 1] = key; // Place it in the correct position
     }
 }
+//? Measuring time
 void InsertionSortTime(vector<int> &arr, double &time)
 {
     auto startTime = chrono::high_resolution_clock::now();
@@ -76,9 +80,10 @@ void InsertionSortTime(vector<int> &arr, double &time)
     time = duration.count();
 }
 
-//? Bubble Sort - swap the largest element to the last in every loop
+//? Count comparisons
 void BubbleSortComp(vector<int> &arr, long long &comparisons)
 {
+    comparisons = 0;
     int n = arr.size();
     for (int i = 0; ++comparisons && i < n - 1; i++)
     {
@@ -93,6 +98,7 @@ void BubbleSortComp(vector<int> &arr, long long &comparisons)
             break;
     }
 }
+//? Measuring time
 void BubbleSortTime(vector<int> &arr, double &time)
 {
     auto startTime = chrono::high_resolution_clock::now();

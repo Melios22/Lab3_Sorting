@@ -1,8 +1,9 @@
 #include "../Header_Files/All.h"
 
-//? Shaker Sort (Cocktail Sort/ Bidirectional Bubble Sort) - similar to bubble sort but doing from both sides
-void ShakerSortComp(std::vector<int> &arr, long long &comparisons)
+//? Count comparisons
+void ShakerSortComp(vector<int> &arr, long long &comparisons)
 {
+    comparisons = 0;
     int ArraySize = arr.size();
     int left = 0, right = ArraySize - 1;
     while (++comparisons && left < right)
@@ -11,7 +12,7 @@ void ShakerSortComp(std::vector<int> &arr, long long &comparisons)
         for (int i = left; ++comparisons && i < right; i++) // Passing from left, find the max and move to last
             if (++comparisons && arr[i] > arr[i + 1])
             {
-                std::swap(arr[i], arr[i + 1]);
+                swap(arr[i], arr[i + 1]);
                 swapped = true;
             }
         right--; // Decrement the last pos which is the current max
@@ -19,7 +20,7 @@ void ShakerSortComp(std::vector<int> &arr, long long &comparisons)
         for (int i = right; ++comparisons && i > left; i--) // Passing from right, find the min and move to first
             if (++comparisons && arr[i - 1] > arr[i])
             {
-                std::swap(arr[i - 1], arr[i]);
+                swap(arr[i - 1], arr[i]);
                 swapped = true;
             }
         left++; // Increment the first pos which is the current min
@@ -28,7 +29,8 @@ void ShakerSortComp(std::vector<int> &arr, long long &comparisons)
             break;
     }
 }
-void ShakerSortTime(std::vector<int> &arr, double &time)
+//? Measuring time
+void ShakerSortTime(vector<int> &arr, double &time)
 {
     auto startTime = chrono::high_resolution_clock::now();
     int ArraySize = arr.size();
@@ -39,7 +41,7 @@ void ShakerSortTime(std::vector<int> &arr, double &time)
         for (int i = left; i < right; i++) // Passing from left, find the max and move to last
             if (arr[i] > arr[i + 1])
             {
-                std::swap(arr[i], arr[i + 1]);
+                swap(arr[i], arr[i + 1]);
                 swapped = true;
             }
         right--; // Decrement the last pos which is the current max
@@ -47,7 +49,7 @@ void ShakerSortTime(std::vector<int> &arr, double &time)
         for (int i = right; i > left; i--) // Passing from right, find the min and move to first
             if (arr[i - 1] > arr[i])
             {
-                std::swap(arr[i - 1], arr[i]);
+                swap(arr[i - 1], arr[i]);
                 swapped = true;
             }
         left++; // Increment the first pos which is the current min
@@ -61,24 +63,8 @@ void ShakerSortTime(std::vector<int> &arr, double &time)
     time = duration.count();
 }
 
-//? Flash Sort - implement Bucket Sort, a fast sorting algorithm
-void InsertionSortVariant(std::vector<int> &arr, int left, int right)
-{
-    for (int i = left + 1; i <= right; i++)
-    {
-        int key = arr[i];
-        int j = i - 1;
-
-        while (j >= left && arr[j] > key) // Move the other elements
-        {
-            arr[j + 1] = arr[j];
-            j--;
-        }
-
-        arr[j + 1] = key; // Place it in the correct position
-    }
-}
-void InsertionSortVariantComp(std::vector<int> &arr, int left, int right, long long &comparisons)
+//? Count comparisons
+void InsertionSortVariantComp(vector<int> &arr, int left, int right, long long &comparisons)
 {
     for (int i = left + 1; ++comparisons && i <= right; i++)
     {
@@ -94,8 +80,9 @@ void InsertionSortVariantComp(std::vector<int> &arr, int left, int right, long l
         arr[j + 1] = key; // Place it in the correct position
     }
 }
-void FlashSortComp(std::vector<int> &arr, long long &comparisons)
+void FlashSortComp(vector<int> &arr, long long &comparisons)
 {
+    comparisons = 0;
     int Arraysize = arr.size(); // Get the size of array
     // Get the number of buckets used for this algorithm, 0.45 is the best number for helping algorithm run effectively
     int numBuckets = (int)(0.45 * Arraysize);
@@ -121,8 +108,8 @@ void FlashSortComp(std::vector<int> &arr, long long &comparisons)
         // Deliver each element into a certain bucket
         for (int i = 0; ++comparisons && i < Arraysize; ++i)
         {
-            double temp = (double)(numBuckets - 1)/(arr[indexMax] - minValue);
-            int indexBucket = (int)(temp *(arr[i] - minValue));
+            double temp = (double)(numBuckets - 1) / (arr[indexMax] - minValue);
+            int indexBucket = (int)(temp * (arr[i] - minValue));
             EndOfBucket[indexBucket]++;
         }
 
@@ -131,7 +118,7 @@ void FlashSortComp(std::vector<int> &arr, long long &comparisons)
             EndOfBucket[i] += EndOfBucket[i - 1];
 
         // Save the position of each last element in bucket
-        std::vector<int> saveBucketSize;
+        vector<int> saveBucketSize;
         for (int i = 0; ++comparisons && i < numBuckets; ++i)
             saveBucketSize.push_back(EndOfBucket[i]);
 
@@ -143,9 +130,9 @@ void FlashSortComp(std::vector<int> &arr, long long &comparisons)
         // Move each element to exact bucket
         for (int i = 0; ++comparisons && i < Arraysize; ++i)
         {
-            double tempValue = (double)(numBuckets - 1)/(temp - minValue);
+            double tempValue = (double)(numBuckets - 1) / (temp - minValue);
             int indexBucket = (int)(tempValue * (arr[0] - minValue));
-            std::swap(arr[0], arr[EndOfBucket[indexBucket] - 1]);
+            swap(arr[0], arr[EndOfBucket[indexBucket] - 1]);
 
             EndOfBucket[indexBucket]--;
             if (++comparisons && EndOfBucket[0] == 0)
@@ -165,7 +152,24 @@ void FlashSortComp(std::vector<int> &arr, long long &comparisons)
     else
         InsertionSortVariantComp(arr, 0, arr.size() - 1, comparisons);
 }
-void FlashSortTime(std::vector<int> &arr, double &time)
+//? Measuring time
+void InsertionSortVariantTime(vector<int> &arr, int left, int right)
+{
+    for (int i = left + 1; i <= right; i++)
+    {
+        int key = arr[i];
+        int j = i - 1;
+
+        while (j >= left && arr[j] > key) // Move the other elements
+        {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+
+        arr[j + 1] = key; // Place it in the correct position
+    }
+}
+void FlashSortTime(vector<int> &arr, double &time)
 {
     auto startTime = chrono::high_resolution_clock::now();
     int Arraysize = arr.size(); // Get the size of array
@@ -193,8 +197,8 @@ void FlashSortTime(std::vector<int> &arr, double &time)
         // Deliver each element into a certain bucket
         for (int i = 0; i < Arraysize; ++i)
         {
-            double temp = (double)(numBuckets - 1)/(arr[indexMax] - minValue);
-            int indexBucket = (int)(temp *(arr[i] - minValue));
+            double temp = (double)(numBuckets - 1) / (arr[indexMax] - minValue);
+            int indexBucket = (int)(temp * (arr[i] - minValue));
             EndOfBucket[indexBucket]++;
         }
 
@@ -203,7 +207,7 @@ void FlashSortTime(std::vector<int> &arr, double &time)
             EndOfBucket[i] += EndOfBucket[i - 1];
 
         // Save the position of each last element in bucket
-        std::vector<int> saveBucketSize;
+        vector<int> saveBucketSize;
         for (int i = 0; i < numBuckets; ++i)
             saveBucketSize.push_back(EndOfBucket[i]);
 
@@ -215,9 +219,9 @@ void FlashSortTime(std::vector<int> &arr, double &time)
         // Move each element to exact bucket
         for (int i = 0; i < Arraysize; ++i)
         {
-            double tempValue = (double)(numBuckets - 1)/(temp - minValue);
+            double tempValue = (double)(numBuckets - 1) / (temp - minValue);
             int indexBucket = (int)(tempValue * (arr[0] - minValue));
-            std::swap(arr[0], arr[EndOfBucket[indexBucket] - 1]);
+            swap(arr[0], arr[EndOfBucket[indexBucket] - 1]);
 
             EndOfBucket[indexBucket]--;
             if (EndOfBucket[0] == 0)
@@ -229,13 +233,13 @@ void FlashSortTime(std::vector<int> &arr, double &time)
         for (int i = 0; i < numBuckets; ++i)
         {
             if (i == 0)
-                InsertionSortVariant(arr, 0, saveBucketSize[i] - 1);
+                InsertionSortVariantTime(arr, 0, saveBucketSize[i] - 1);
             else
-                InsertionSortVariant(arr, saveBucketSize[i - 1], saveBucketSize[i] - 1);
+                InsertionSortVariantTime(arr, saveBucketSize[i - 1], saveBucketSize[i] - 1);
         }
     }
     else
-        InsertionSortVariant(arr, 0, arr.size() - 1);
+        InsertionSortVariantTime(arr, 0, arr.size() - 1);
     auto endTime = chrono::high_resolution_clock::now();
 
     chrono::duration<double, milli> duration = endTime - startTime;
