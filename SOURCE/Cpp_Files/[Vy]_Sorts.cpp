@@ -1,7 +1,7 @@
 #include "../Header_Files/All.h"
 
 //? Selection Sort - swap the min in the unsorted to the last sorted part
-void Selection_Sort(vector<int> &arr, long long &comparisons)
+void SelectionSortComp(vector<int> &arr, long long &comparisons)
 {
     int n = arr.size();
     for (int i = 0; ++comparisons && i < n - 1; i++)
@@ -15,11 +15,20 @@ void Selection_Sort(vector<int> &arr, long long &comparisons)
             std::swap(arr[minInd], arr[i]);
     }
 }
-void SelectionSort(vector<int> &arr, long long &comparisons, double &time)
+void SelectionSortTime(vector<int> &arr, double &time)
 {
     auto startTime = chrono::high_resolution_clock::now();
-    comparisons = 0;
-    Selection_Sort(arr, comparisons);
+    int n = arr.size();
+    for (int i = 0; i < n - 1; i++)
+    {
+        int minInd = i;
+        for (int j = i + 1; j < n; j++) // Find the min element's index
+            if (arr[j] < arr[minInd])
+                minInd = j;
+
+        if (minInd != i) // Swap the min to its pos if the min's index different from the current
+            std::swap(arr[minInd], arr[i]);
+    }
     auto endTime = chrono::high_resolution_clock::now();
 
     chrono::duration<double, milli> duration = endTime - startTime;
@@ -27,7 +36,7 @@ void SelectionSort(vector<int> &arr, long long &comparisons, double &time)
 }
 
 //? Insertion Sort - move the key to its correct pos by shifting the other elements
-void Insertion_Sort(vector<int> &arr, long long &comparisons)
+void InsertionSortComp(vector<int> &arr, long long &comparisons)
 {
     int n = arr.size();
     for (int i = 1; ++comparisons && i < n; i++)
@@ -44,11 +53,23 @@ void Insertion_Sort(vector<int> &arr, long long &comparisons)
         arr[j + 1] = key; // Place it in the correct position
     }
 }
-void InsertionSort(vector<int> &arr, long long &comparisons, double &time)
+void InsertionSortTime(vector<int> &arr, double &time)
 {
     auto startTime = chrono::high_resolution_clock::now();
-    comparisons = 0;
-    Insertion_Sort(arr, comparisons);
+    int n = arr.size();
+    for (int i = 1; i < n; i++)
+    {
+        int key = arr[i];
+        int j = i - 1;
+
+        while (j >= 0 && arr[j] > key) // Move the other elements
+        {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+
+        arr[j + 1] = key; // Place it in the correct position
+    }
     auto endTime = chrono::high_resolution_clock::now();
 
     chrono::duration<double, milli> duration = endTime - startTime;
@@ -56,7 +77,7 @@ void InsertionSort(vector<int> &arr, long long &comparisons, double &time)
 }
 
 //? Bubble Sort - swap the largest element to the last in every loop
-void Bubble_Sort(vector<int> &arr, long long &comparisons)
+void BubbleSortComp(vector<int> &arr, long long &comparisons)
 {
     int n = arr.size();
     for (int i = 0; ++comparisons && i < n - 1; i++)
@@ -72,11 +93,22 @@ void Bubble_Sort(vector<int> &arr, long long &comparisons)
             break;
     }
 }
-void BubbleSort(vector<int> &arr, long long &comparisons, double &time)
+void BubbleSortTime(vector<int> &arr, double &time)
 {
     auto startTime = chrono::high_resolution_clock::now();
-    comparisons = 0;
-    Bubble_Sort(arr, comparisons);
+    int n = arr.size();
+    for (int i = 0; i < n - 1; i++)
+    {
+        bool swapped = false;
+        for (int j = 0; j < n - i - 1; j++) // Move the largest to last
+            if (arr[j] > arr[j + 1])
+            {
+                std::swap(arr[j], arr[j + 1]);
+                swapped = true;
+            }
+        if (!swapped) // If there is no swap, the array is sorted
+            break;
+    }
     auto endTime = chrono::high_resolution_clock::now();
 
     chrono::duration<double, milli> duration = endTime - startTime;
