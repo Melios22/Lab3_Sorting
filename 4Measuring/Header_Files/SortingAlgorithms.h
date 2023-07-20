@@ -1,39 +1,41 @@
-#ifndef SortingAlgorithms_h
-#define SortingAlgorithms_h
-
+#pragma once
 #include "Library.h"
 
 //* Huy's part
-void Heap_Sort(vector<int> &arr, long long &comparisons);
-void HeapSort(vector<int> &arr, long long &comparisons, double &time);
-void Merge_Sort(vector<int> &arr, int left, int right, long long &comparisons);
-void MergeSort(vector<int> &arr, long long &comparisons, double &time);
-void Radix_Sort(vector<int> &arr, int base, long long &comparisons);
-void RadixSort(vector<int> &arr, long long &comparisons, double &time);
+void HeapSortComp(vector<int> &arr, long long &comparisons);
+void MergeSortComp(vector<int> &arr, long long &comparisons);
+void RadixSortComp(vector<int> &arr, long long &comparisons);
+
+void HeapSortTime(vector<int> &arr, double &time);
+void MergeSortTime(vector<int> &arr, double &time);
+void RadixSortTime(vector<int> &arr, double &time);
 
 //* Minh's part
-void Quick_Sort(vector<int> &arr, int left, int right, long long &comparisons);
-void QuickSort(vector<int> &arr, long long &comparisons, double &time);
-void Shell_Sort(vector<int> &arr, long long &comparisons);
-void ShellSort(vector<int> &arr, long long &comparisons, double &time);
-void Counting_Sort(vector<int> &arr, long long &comparisons);
-void CountingSort(vector<int> &arr, long long &comparisons, double &time);
+void QuickSortComp(vector<int> &arr, long long &comparisons);
+void ShellSortComp(vector<int> &arr, long long &comparisons);
+void CountingSortComp(vector<int> &arr, long long &comparisons);
+
+void QuickSortTime(vector<int> &arr, double &time);
+void ShellSortTime(vector<int> &arr, double &time);
+void CountingSortTime(vector<int> &arr, double &time);
 
 //* Nam's part
-void Shaker_Sort(std::vector<int> &arr, long long &comparisons);
-void ShakerSort(std::vector<int> &arr, long long &comparisons, double &time);
-void Flash_Sort(std::vector<int> &arr, long long &comparisons);
-void FlashSort(std::vector<int> &arr, long long &comparisons, double &time);
+void ShakerSortComp(vector<int> &arr, long long &comparisons);
+void FlashSortComp(vector<int> &arr, long long &comparisons);
+
+void ShakerSortTime(vector<int> &arr, double &time);
+void FlashSortTime(vector<int> &arr, double &time);
 
 //* Vy's part
-void Selection_Sort(vector<int> &arr, long long &comparisons);
-void SelectionSort(vector<int> &arr, long long &comparisons, double &time);
-void Insertion_Sort(vector<int> &arr, long long &comparisons);
-void InsertionSort(vector<int> &arr, long long &comparisons, double &time);
-void Bubble_Sort(vector<int> &arr, long long &comparisons);
-void BubbleSort(vector<int> &arr, long long &comparisons, double &time);
+void SelectionSortComp(vector<int> &arr, long long &comparisons);
+void InsertionSortComp(vector<int> &arr, long long &comparisons);
+void BubbleSortComp(vector<int> &arr, long long &comparisons);
 
-// Global variables
+void SelectionSortTime(vector<int> &arr, double &time);
+void InsertionSortTime(vector<int> &arr, double &time);
+void BubbleSortTime(vector<int> &arr, double &time);
+
+//* Global variables
 const vector<string> Algo = {"Bubble Sort",
                              "Counting Sort",
                              "Flash Sort",
@@ -46,18 +48,30 @@ const vector<string> Algo = {"Bubble Sort",
                              "Shaker Sort",
                              "Shell Sort"};
 
-const vector<MeasureSortingAlgo> Algo_Measuring = {
-    BubbleSort,
-    CountingSort,
-    FlashSort,
-    HeapSort,
-    InsertionSort,
-    MergeSort,
-    QuickSort,
-    RadixSort,
-    SelectionSort,
-    ShakerSort,
-    ShellSort,
+const vector<MeasureComp> Algo_Measuring_Comp = {
+    BubbleSortComp,
+    CountingSortComp,
+    FlashSortComp,
+    HeapSortComp,
+    InsertionSortComp,
+    MergeSortComp,
+    QuickSortComp,
+    RadixSortComp,
+    SelectionSortComp,
+    ShakerSortComp,
+    ShellSortComp,
 };
 
-#endif
+const vector<MeasureTime> Algo_Measuring_Time = {
+    BubbleSortTime,
+    CountingSortTime,
+    FlashSortTime,
+    HeapSortTime,
+    InsertionSortTime,
+    MergeSortTime,
+    QuickSortTime,
+    RadixSortTime,
+    SelectionSortTime,
+    ShakerSortTime,
+    ShellSortTime,
+};
