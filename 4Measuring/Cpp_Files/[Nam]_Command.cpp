@@ -32,7 +32,8 @@ void Command_1(Task task)
     // Measure time - comparisons
     long long comparisons = 0;
     double time = 0;
-    Algo_Measuring[task.indexAlgo1](arr, comparisons, time);
+    Algo_Measuring_Comp[task.indexAlgo1](arr, comparisons);
+    Algo_Measuring_Time[task.indexAlgo1](arr, time);
 
     // Print measured data(s) to console screen
     print2Terminal_a(comparisons, time, task.outPara);
@@ -70,7 +71,8 @@ void Command_3(Task task)
     // Measure time - comparisons
     long long comparisons_1 = 0;
     double time_1 = 0;
-    Algo_Measuring[task.indexAlgo1](arr_1, comparisons_1, time_1);
+    Algo_Measuring_Comp[task.indexAlgo1](arr_1, comparisons_1);
+    Algo_Measuring_Time[task.indexAlgo1](arr_1, time_1);
     // Print measured data(s) to console screen
     print2Terminal_a(comparisons_1, time_1, task.outPara);
 
@@ -81,7 +83,8 @@ void Command_3(Task task)
     // Measure time - comparisons
     long long comparisons_2 = 0;
     double time_2 = 0;
-    Algo_Measuring[task.indexAlgo1](arr_2, comparisons_2, time_2);
+    Algo_Measuring_Comp[task.indexAlgo1](arr_2, comparisons_2);
+    Algo_Measuring_Time[task.indexAlgo1](arr_2, time_2);
     // Print measured data(s) to console screen
     print2Terminal_a(comparisons_2, time_2, task.outPara);
 
@@ -92,7 +95,8 @@ void Command_3(Task task)
     // Measure time - comparisons
     long long comparisons_3 = 0;
     double time_3 = 0;
-    Algo_Measuring[task.indexAlgo1](arr_3, comparisons_3, time_3);
+    Algo_Measuring_Comp[task.indexAlgo1](arr_3, comparisons_3);
+    Algo_Measuring_Time[task.indexAlgo1](arr_3, time_3);
     // Print measured data(s) to console screen
     print2Terminal_a(comparisons_3, time_3, task.outPara);
 
@@ -103,7 +107,8 @@ void Command_3(Task task)
     // Measure time - comparisons
     long long comparisons_4 = 0;
     double time_4 = 0;
-    Algo_Measuring[task.indexAlgo1](arr_4, comparisons_4, time_4);
+    Algo_Measuring_Comp[task.indexAlgo1](arr_4, comparisons_4);
+    Algo_Measuring_Time[task.indexAlgo1](arr_4, time_4);
     // Print measured data(s) to console screen
     print2Terminal_a(comparisons_4, time_4, task.outPara);
 }

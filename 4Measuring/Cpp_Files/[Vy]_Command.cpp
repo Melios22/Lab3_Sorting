@@ -32,10 +32,12 @@ void Command_4(Task task)
     // Measure time - comparisons
     long long comparisons_1 = 0;
     double time_1 = 0;
-    Algo_Measuring[task.indexAlgo1](first_arr, comparisons_1, time_1);
+    Algo_Measuring_Comp[task.indexAlgo1](first_arr, comparisons_1);
+    Algo_Measuring_Time[task.indexAlgo1](first_arr, time_1);
     long long comparisons_2 = 0;
     double time_2 = 0;
-    Algo_Measuring[task.indexAlgo2](second_arr, comparisons_2, time_2);
+    Algo_Measuring_Comp[task.indexAlgo2](second_arr, comparisons_2);
+    Algo_Measuring_Time[task.indexAlgo2](second_arr, time_2);
 
     // Print measured data(s) to console screen
     print2Terminal_c(comparisons_1, comparisons_2, time_1, time_2);

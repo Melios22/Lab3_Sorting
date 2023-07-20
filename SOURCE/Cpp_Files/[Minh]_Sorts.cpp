@@ -22,7 +22,7 @@ int partitionComp(vector<int> &arr, int left, int right, long long &comparisons)
     swap(arr[pIndex], arr[left]); // Switch it back to the first element
 
     int i = left + 1;
-    for (int j = i + 1; ++comparisons && j <= right; j++) // Move the elements smaller than pivot to the left
+    for (int j = i; ++comparisons && j <= right; j++) // Move the elements smaller than pivot to the left
     {
         if (++comparisons && arr[j] < pivot)
             swap(arr[j], arr[i++]);
@@ -66,7 +66,7 @@ int partitionTime(vector<int> &arr, int left, int right)
     swap(arr[pIndex], arr[left]); // Switch it back to the first element
 
     int i = left + 1;
-    for (int j = i + 1; j <= right; j++) // Move the elements smaller than pivot to the left
+    for (int j = i; j <= right; j++) // Move the elements smaller than pivot to the left
     {
         if (arr[j] < pivot)
             swap(arr[j], arr[i++]);

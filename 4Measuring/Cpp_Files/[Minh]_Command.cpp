@@ -23,7 +23,8 @@ void Command_2(Task task)
     // Measure time - comparisons
     long long comparisons = 0;
     double time = 0;
-    Algo_Measuring[task.indexAlgo1](arr, comparisons, time);
+    Algo_Measuring_Comp[task.indexAlgo1](arr, comparisons);
+    Algo_Measuring_Time[task.indexAlgo1](arr, time);
 
     // Print measured data(s) to console screen
     print2Terminal_a(comparisons, time, task.outPara);
