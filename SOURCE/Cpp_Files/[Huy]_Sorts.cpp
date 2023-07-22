@@ -14,26 +14,22 @@ void heapifyComp(vector<int> &arr, int size, int pos, long long &comparisons)
             isHeap = true;
         else
         {
-            std::swap(arr[pos], arr[j]); // Reposition the node
+            swap(arr[pos], arr[j]); // Reposition the node
             pos = j;                     // Loop to check validity of the node just has swapped
         }
     }
     arr[pos] = v;
 }
-void Heap_Sort_Comp(vector<int> &arr, long long &comparisons)
+void HeapSortComp(vector<int> &arr, long long &comparisons)
 {
+    comparisons = 0;
     for (int i = arr.size() / 2 - 1; ++comparisons && i >= 0; i--) // Loop from the middle to heapify the whole array
         heapifyComp(arr, arr.size(), i, comparisons);
     for (int i = arr.size() - 1; ++comparisons && i > 0; i--)
     {
-        std::swap(arr[0], arr[i]);           // Swap the first element with the last unsorted element
+        swap(arr[0], arr[i]);           // Swap the first element with the last unsorted element
         heapifyComp(arr, i, 0, comparisons); // Heapify the semi-heap again with the reduced size
     }
-}
-void HeapSortComp(vector<int> &arr, long long &comparisons)
-{
-    comparisons = 0;
-    Heap_Sort_Comp(arr, comparisons);
 }
 //? Measuring time
 void heapifyTime(vector<int> &arr, int size, int pos)
@@ -49,26 +45,22 @@ void heapifyTime(vector<int> &arr, int size, int pos)
             isHeap = true;
         else
         {
-            std::swap(arr[pos], arr[j]); // Reposition the node
+            swap(arr[pos], arr[j]); // Reposition the node
             pos = j;                     // Loop to check validity of the node just has swapped
         }
     }
     arr[pos] = v;
 }
-void Heap_Sort_Time(vector<int> &arr)
+void HeapSortTime(vector<int> &arr, double &time)
 {
+    auto startTime = chrono::high_resolution_clock::now();
     for (int i = arr.size() / 2 - 1; i >= 0; i--) // Loop from the middle to heapify the whole array
         heapifyTime(arr, arr.size(), i);
     for (int i = arr.size() - 1; i > 0; i--)
     {
-        std::swap(arr[0], arr[i]); // Swap the first element with the last unsorted element
+        swap(arr[0], arr[i]); // Swap the first element with the last unsorted element
         heapifyTime(arr, i, 0);    // Heapify the semi-heap again with the reduced size
     }
-}
-void HeapSortTime(vector<int> &arr, double &time)
-{
-    auto startTime = chrono::high_resolution_clock::now();
-    Heap_Sort_Time(arr);
     auto endTime = chrono::high_resolution_clock::now();
 
     chrono::duration<double, milli> duration = endTime - startTime;
@@ -103,7 +95,7 @@ void Merge_Sort_Comp(vector<int> &arr, int left, int right, long long &compariso
 {
     if (++comparisons && (left < right))
     {
-        int mid = left + (right - left) / 2;     // get the mid, avoiding overflowing
+        int mid = left + (right - left) / 2;          // get the mid, avoiding overflowing
         Merge_Sort_Comp(arr, left, mid, comparisons); // Recursively divide into small lists
         Merge_Sort_Comp(arr, mid + 1, right, comparisons);
         mergeComp(arr, left, mid, right, comparisons); // Merge the sorted lists together
@@ -168,7 +160,7 @@ void RadixSortComp(vector<int> &arr, long long &comparisons)
         if (++comparisons && arr[i] < 0)
         {
             negative = true;                   // Check for negative numbers
-            minVal = std::min(minVal, arr[i]); // Get the minimum value of the array
+            minVal = min(minVal, arr[i]); // Get the minimum value of the array
         }
 
     if (++comparisons && negative)
@@ -176,7 +168,7 @@ void RadixSortComp(vector<int> &arr, long long &comparisons)
             arr[i] -= minVal; // Add every element up to 0
 
     for (int i = 0; ++comparisons && i < arr.size(); i++)
-        longest = std::max(longest, int(std::to_string(arr[i]).size())); // Get the max size of the elements
+        longest = max(longest, int(to_string(arr[i]).size())); // Get the max size of the elements
 
     int expo = 1;
     while (++comparisons && longest--)
@@ -216,7 +208,7 @@ void RadixSortTime(vector<int> &arr, double &time)
         if (arr[i] < 0)
         {
             negative = true;                   // Check for negative numbers
-            minVal = std::min(minVal, arr[i]); // Get the minimum value of the array
+            minVal = min(minVal, arr[i]); // Get the minimum value of the array
         }
 
     if (negative)
@@ -224,7 +216,7 @@ void RadixSortTime(vector<int> &arr, double &time)
             arr[i] -= minVal; // Add every element up to 0
 
     for (int i = 0; i < arr.size(); i++)
-        longest = std::max(longest, int(std::to_string(arr[i]).size())); // Get the max size of the elements
+        longest = max(longest, int(to_string(arr[i]).size())); // Get the max size of the elements
 
     int expo = 1;
     while (longest--)
