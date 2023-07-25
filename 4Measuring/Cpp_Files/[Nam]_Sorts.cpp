@@ -141,6 +141,7 @@ void FlashSortComp(vector<int> &arr, long long &comparisons)
 
         delete[] EndOfBucket; // Deallocation
 
+        //Insertion Sort on each bucket
         for (int i = 0; ++comparisons && i < numBuckets; ++i)
         {
             if (++comparisons && i == 0)

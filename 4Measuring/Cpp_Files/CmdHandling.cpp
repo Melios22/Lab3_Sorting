@@ -17,11 +17,11 @@ int SearchAlgorithm(vector<string> Algo, string target)
     {
         int mid = (left + right) >> 1;
 
-        if (Algo[mid] == target)
+        if (Algo[mid] == target) //Seeked
             return mid;
-        else if (Algo[mid] < target)
+        else if (Algo[mid] < target) //Continue to search in right side
             left = mid + 1;
-        else
+        else //Continue to search in left side
             right = mid - 1;
     }
 
@@ -231,12 +231,12 @@ void exportArrayToFile(vector<int> arr, string file_output)
 
 void print2Terminal_a(long long comparisons, double time, string requires)
 {
-    if (requires == "-time")
+    if (requires == "-time") //Only print time
         cout << "Running time: " << time << " ms"
              << "\n";
-    else if (requires == "-comp")
+    else if (requires == "-comp") //Only print the number of comparisons
         cout << "Comparisons: " << comparisons << "\n";
-    else if (requires == "-both")
+    else if (requires == "-both") //Print both
     {
         cout << "Running time: " << time << " ms"
              << "\n";
@@ -247,9 +247,9 @@ void print2Terminal_a(long long comparisons, double time, string requires)
 
 void print2Terminal_c(long long comparisons_1, long long comparisons_2, double time_1, double time_2)
 {
-    std::cout << "Running time: " << time_1 << " ms | " << time_2 << " ms"
+    std::cout << "Running time: " << time_1 << " ms | " << time_2 << " ms" //Compare time
               << "\n";
-    std::cout << "Comparisons: " << comparisons_1 << " | " << comparisons_2
+    std::cout << "Comparisons: " << comparisons_1 << " | " << comparisons_2 //Compare the number of comparisons
               << "\n";
     std::cout << "\n";
 }

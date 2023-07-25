@@ -2,6 +2,7 @@
 
 void Command_2(Task task)
 {
+    //Generate an array with characteristics based on Order type handling from command line argument
     int n = task.inSize;
     int *array = new int[n];
     if (task.inOrder == "-rand")
@@ -13,9 +14,9 @@ void Command_2(Task task)
     if (task.inOrder == "-rev")
         GenerateReverseData(array, n);
 
-    vector<int> arr = arr2Vec(array, n); //? Convert to vector
-    exportArrayToFile(arr, "input.txt"); //? Write down the input to input.txt
-    delete[] array;
+    vector<int> arr = arr2Vec(array, n); // Convert to vector
+    exportArrayToFile(arr, "input.txt"); // Write down the input to input.txt
+    delete[] array; //Deallocation
 
     // Print some initial information to console screen
     printCmd(task);

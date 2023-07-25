@@ -8,6 +8,7 @@ void Command_5(Task task)
     int size = task.inSize;
     vector<int> arr1(size);
 
+    //Generate an array with characteristics based on Order type handling from command line argument
     if (task.inOrder == "-rand")
         GenerateRandomData(&arr1[0], size);
     else if (task.inOrder == "-sorted")
@@ -18,12 +19,13 @@ void Command_5(Task task)
         GenerateReverseData(&arr1[0], size);
     vector<int> arr2 = vector<int>(arr1);
 
+    //Write down the input to input.txt
     exportArrayToFile(arr1, "input.txt");
 
     // Print some initial information to console screen
     printCmd(task);
 
-    // comparison
+    // Measure time - comparisons
     long long comparisons_1 = 0;
     double time_1 = 0.0;
     Algo_Measuring_Comp[task.indexAlgo1](arr1, comparisons_1);
@@ -33,5 +35,6 @@ void Command_5(Task task)
     Algo_Measuring_Comp[task.indexAlgo1](arr2, comparisons_2);
     Algo_Measuring_Time[task.indexAlgo1](arr2, time_2);
 
+    //Print measured data(s) to console screen
     print2Terminal_c(comparisons_1, comparisons_2, time_1, time_2);
 }
