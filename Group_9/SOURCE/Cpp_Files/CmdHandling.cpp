@@ -8,7 +8,7 @@ vector<int> arr2Vec(int *arr, int n)
     return vec;
 }
 
-int SearchAlgorithm(vector<string> Algo, string target)
+int SearchAlgorithm(vector<string> Algo, string target) // use binary search to find the index of the algorithm
 {
     int left = 0;
     int right = Algo.size() - 1;
@@ -28,7 +28,7 @@ int SearchAlgorithm(vector<string> Algo, string target)
     return -1;
 }
 
-bool isNum(char *str)
+bool isNum(char *str) // check if the string is a number
 {
     for (int i = 0; i < strlen(str); i++)
         if (str[i] < '0' || '9' > str[i])
@@ -36,7 +36,7 @@ bool isNum(char *str)
     return true;
 }
 
-string title(char *str)
+string title(char *str) // convert the string to title format
 {
     string s = str;
     s[0] -= 32;
@@ -52,7 +52,7 @@ string title(char *str)
     return s;
 }
 
-bool supportAlgorithm(string algo)
+bool supportAlgorithm(string algo) // Check if the algorithm is supported or not
 {
     for (int i = 0; i < Algo.size(); i++)
         if (algo == Algo[i])
@@ -61,12 +61,12 @@ bool supportAlgorithm(string algo)
 }
 bool checkVailidity(Task task)
 {
-    if (!supportAlgorithm(task.al1))
+    if (!supportAlgorithm(task.al1)) // If the algorithm is not supported
     {
         cout << "\nAlgorithm " << task.al1 << " is not supported!\n";
         return false;
     }
-    else if (task.mode == "-c" && !supportAlgorithm(task.al2))
+    else if (task.mode == "-c" && !supportAlgorithm(task.al2)) // In comparison mode, if the algorithm 2 is not supported
     {
         cout << "\nAlgorithm " << task.al2 << " is not supported!\n";
         return false;
@@ -74,12 +74,12 @@ bool checkVailidity(Task task)
 
     if ((task.command == 1 || task.command == 3) && task.outPara != "-time" && task.outPara != "-comp" && task.outPara != "-both")
     {
-        cout << "\nWrong output parameter!!!\n";
+        cout << "\nWrong output parameter!!!\n"; // Wrong output parameter
         return false;
     }
     if ((task.command == 2 || task.command == 5) && task.inOrder != "-rand" && task.inOrder != "-nsorted" && task.inOrder != "-sorted" && task.inOrder != "-rev")
     {
-        cout << "\nWrong input order!!!\n";
+        cout << "\nWrong input order!!!\n"; // Wrong input order
         return false;
     }
 
@@ -88,38 +88,38 @@ bool checkVailidity(Task task)
 
 bool getInfo4(int argc, char *argv[], Task &task)
 {
-    task.mode = argv[1];
+    task.mode = argv[1]; // Get the mode
 
     if (task.mode != "-a" && task.mode != "-c") // Wrong format
         return false;
 
     if (task.mode == "-a")
     {
-        task.al1 = title(argv[2]);
+        task.al1 = title(argv[2]); // Get the algorithm
         task.indexAlgo1 = SearchAlgorithm(Algo, task.al1);
-        task.al2 = "";
+        task.al2 = ""; // No algorithm 2
         task.indexAlgo2 = -1;
         if (argc == 5)
         {
             if (!isNum(argv[3])) // Check for using file or not
             {
                 task.command = 1;
-                task.useFile = true;
-                task.inFile = argv[3];
+                task.useFile = true; // Use file
+                task.inFile = argv[3]; // Get the input file
             }
             else
             {
                 task.command = 3;
-                task.inSize = atoi(argv[3]);
+                task.inSize = atoi(argv[3]); // Get the input size
             }
             task.outPara = argv[4];
         }
         else
         {
             task.command = 2;
-            task.inSize = atoi(argv[3]);
-            task.inOrder = argv[4];
-            task.outPara = argv[5];
+            task.inSize = atoi(argv[3]); // Get the input size
+            task.inOrder = argv[4]; // Get the input order
+            task.outPara = argv[5]; // Get the output parameter
         }
     }
     else
@@ -131,18 +131,18 @@ bool getInfo4(int argc, char *argv[], Task &task)
         if (argc == 5)
         {
             task.command = 4;
-            task.useFile = true;
-            task.inFile = argv[4];
+            task.useFile = true; // Use file
+            task.inFile = argv[4]; // Get the input file
         }
         else
         {
-            task.command = 5;
-            task.inSize = atoi(argv[4]);
-            task.inOrder = argv[5];
+            task.command = 5; 
+            task.inSize = atoi(argv[4]); // Get the input size
+            task.inOrder = argv[5]; // Get the input order
         }
     }
 
-    return checkVailidity(task);
+    return checkVailidity(task); // Check the validity of the input
 }
 
 void printBreakLine()
@@ -150,7 +150,7 @@ void printBreakLine()
     cout << "-------------------------------------------------\n";
 }
 
-void printInputOrder(Task task)
+void printInputOrder(Task task) // Print the input order
 {
     if (task.inOrder == "-rand")
         cout << "Input order: Randomize"
@@ -166,7 +166,7 @@ void printInputOrder(Task task)
              << "\n";
 }
 
-void printCmd(Task task)
+void printCmd(Task task) // Print the command
 {
     switch (task.command)
     {
@@ -212,7 +212,7 @@ void exportArrayToFile(vector<int> arr, string file_output)
     // Open file to write
     ofstream ofs;
     ofs.open(file_output);
-    if (!ofs.is_open())
+    if (!ofs.is_open()) // Find not found
     {
         cout << "Error: Cannot open file!"
              << "\n";
@@ -221,15 +221,15 @@ void exportArrayToFile(vector<int> arr, string file_output)
 
     // Write array into file
     int size = arr.size();
-    ofs << size << "\n";
-    for (int i = 0; i < size; ++i)
+    ofs << size << "\n"; // Write size of array
+    for (int i = 0; i < size; ++i) // Write array
         ofs << arr[i] << " ";
 
     // Close file
     ofs.close();
 }
 
-void print2Terminal_a(long long comparisons, double time, string requires)
+void print2Terminal_a(long long comparisons, double time, string requires) // Print to terminal for algorithm mode
 {
     if (requires == "-time")
         cout << "Running time: " << time << " ms"
@@ -245,7 +245,7 @@ void print2Terminal_a(long long comparisons, double time, string requires)
     cout << "\n";
 }
 
-void print2Terminal_c(long long comparisons_1, long long comparisons_2, double time_1, double time_2)
+void print2Terminal_c(long long comparisons_1, long long comparisons_2, double time_1, double time_2) // Print to terminal for comparison mode
 {
     std::cout << "Running time: " << time_1 << " ms | " << time_2 << " ms"
               << "\n";

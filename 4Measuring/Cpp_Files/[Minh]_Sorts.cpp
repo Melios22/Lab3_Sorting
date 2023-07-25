@@ -8,7 +8,7 @@ int findMedianComp(vector<int> &arr, int left, int right, long long &comparisons
     // Sort the three elements
     if (++comparisons && arr[left] > arr[mid]) // Swap the first and mid elements
         swap(arr[left], arr[mid]);
-    if (++comparisons && arr[mid] > arr[right]) // Swap the mid and last elements
+    if (++comparisons && arr[mid] > arr[right])// Swap the mid and last elements
         swap(arr[mid], arr[right]);
     if (++comparisons && arr[left] > arr[mid]) // Swap the first and mid elements
         swap(arr[left], arr[mid]);
