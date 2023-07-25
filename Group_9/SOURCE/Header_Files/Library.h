@@ -2,16 +2,16 @@
 #define Library_h
 
 // Libraries
-#include <iostream>
-#include <fstream>
-#include <string>
+#include <iostream> // cout
+#include <fstream>  // file
+#include <string>   // string
 // #include <cstring>
-#include <vector>
-#include <ctime>
-#include <cstdlib>
+#include <vector>  // array
+#include <ctime>   // real-time randomization
+#include <cstdlib> // randomized functions
 // #include <cmath>
-#include <queue>
-#include <chrono>
+#include <queue>  // queue
+#include <chrono> // measure time
 
 // Namespaces
 using namespace std;

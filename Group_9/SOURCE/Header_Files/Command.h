@@ -25,18 +25,25 @@
 //?              -both: both
 
 vector<int> arr2Vec(int *arr, int n);
+
+// Function to support checking validity of the inputing command
 int SearchAlgorithm(vector<string> Algo, string target);
 bool isNum(char *str);
 bool supportAlgorithm(string algo);
 bool checkVailidity(Task task);
-bool getInfo4(int argc, char *argv[], Task &task);
+bool getInfo4(int argc, char *argv[], Task &task); // Get information from the command line
+
+// printing support functions
 void printBreakLine();
 void printInputOrder(Task task);
 void printCmd(Task task);
 void print2Terminal_a(long long comparisons, double time, string requires);
 void print2Terminal_c(long long comparisons_1, long long comparisons_2, double time_1, double time_2);
+
+// extract data to file
 void exportArrayToFile(vector<int> arr, string file_output);
 
+// Command functions
 void Command_1(Task task);
 void Command_2(Task task);
 void Command_3(Task task);

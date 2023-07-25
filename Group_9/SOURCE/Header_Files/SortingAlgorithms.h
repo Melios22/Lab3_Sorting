@@ -36,6 +36,7 @@ void InsertionSortTime(vector<int> &arr, double &time);
 void BubbleSortTime(vector<int> &arr, double &time);
 
 //* Global variables
+// Supported algorithms
 const vector<string> Algo = {"Bubble Sort",
                              "Counting Sort",
                              "Flash Sort",
@@ -48,6 +49,7 @@ const vector<string> Algo = {"Bubble Sort",
                              "Shaker Sort",
                              "Shell Sort"};
 
+// Function pointer for comparing
 const vector<MeasureComp> Algo_Measuring_Comp = {
     BubbleSortComp,
     CountingSortComp,
@@ -62,6 +64,7 @@ const vector<MeasureComp> Algo_Measuring_Comp = {
     ShellSortComp,
 };
 
+// Function pointer for measuring time
 const vector<MeasureTime> Algo_Measuring_Time = {
     BubbleSortTime,
     CountingSortTime,
