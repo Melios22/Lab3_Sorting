@@ -41,7 +41,4 @@ void Command_4(Task task)
 
     // Print measured data(s) to console screen
     print2Terminal_c(comparisons_1, comparisons_2, time_1, time_2);
-
-    // Export array
-    exportArrayToFile(first_arr, "output.txt");
 }

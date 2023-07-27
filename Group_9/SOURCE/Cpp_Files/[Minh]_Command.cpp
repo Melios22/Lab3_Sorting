@@ -28,4 +28,6 @@ void Command_2(Task task)
 
     // Print measured data(s) to console screen
     print2Terminal_a(comparisons, time, task.outPara);
+
+    exportArrayToFile(arr, "output.txt"); //? Write down the input to output.txt
 }
