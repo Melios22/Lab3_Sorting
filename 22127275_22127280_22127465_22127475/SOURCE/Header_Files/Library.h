@@ -5,10 +5,10 @@
 #include <iostream> // cout
 #include <fstream>  // file
 #include <string>   // string
-// #include <cstring>
-#include <vector>  // array
-#include <ctime>   // real-time randomization
-#include <cstdlib> // randomized functions
+#include <cstring>  // strlen
+#include <vector>   // array
+#include <ctime>    // real-time randomization
+#include <cstdlib>  // randomized functions
 // #include <cmath>
 #include <queue>  // queue
 #include <chrono> // measure time
